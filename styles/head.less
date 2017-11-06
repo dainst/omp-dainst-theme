@@ -62,13 +62,14 @@
 
 	.is_text {
 		font-family: @font-site-title;
-		display: inline-block;
 		position: relative;
 		font-size: @font-header;
-		font-weight: @bold;
+		font-weight: 500;
 		line-height: @line-header;
-		color: @text-bg-base;
+		color: #6580aa;
 		text-decoration: none;
+		display: block;
+	  	padding: (@triple * 3) @triple (@triple * 3);
 
 		&:focus {
 			text-decoration: underline;

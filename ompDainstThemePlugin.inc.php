@@ -79,6 +79,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$templateMgr->register_function("idai_head", array($this, "getHead"));
 		$templateMgr->register_block("idai_navbar", array($this, "getNavbar"));
 		$templateMgr->register_function("idai_footer", array($this, "getFooter"));
+		$templateMgr->register_function("idai_footer_scripts", array($this, "getFooterScripts"));
 		$templateMgr->register_function("pdf_viewer", array($this, "getViewer"));
 		$templateMgr->register_function("getOJSFolder", array($this, "getOJSFolder"));
 		$templateMgr->register_function("getOJSDomain", array($this, "getOJSDomain"));
@@ -93,6 +94,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		);
 		$this->_idaic->settings["scripts"]["jquery"]["include"] = false;
 		$this->_idaic->settings["scripts"]["bootstrap"]["include"] = false;
+		$this->_idaic->settings["scripts"]["navbar"]["include"] = "footer";
 
 
 
@@ -141,15 +143,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->addMenuArea(array('primary', 'user'));
 
 
-		/**
-		 * Stand:
-		 * - jquery und idai-navbar.js kommen nicht in der richtigen reihenfolge, daher geht imprint-popup nicht
-		 * -
-		 *
-		 *
-		 */
-
-
+		$this->addStyle('dainst', "styles/dainst.css");
 
 
 	}
@@ -271,7 +265,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// user menu
 		$this->_idaic->settings['buttons']['usermenu']["submenu"]["a"] = array(
 			"label"	=>	AppLocale::translate("navigation.dashboard") . "<span class='badge pull-right'>" . $session->notifications . "</span>",
-			"href"	=>	$smarty->smartyUrl(array("page" => "user", "op" => "submissions"), $smarty)
+			"href"	=>	$smarty->smartyUrl(array("page" => "submissions", "context" => $context->getPath()), $smarty)
 		);
 		$this->_idaic->settings['buttons']['usermenu']["submenu"]["b"] = array(
 			"label"	=>	AppLocale::translate("user.profile"),
@@ -427,7 +421,11 @@ class ompDainstThemePlugin extends ThemePlugin {
 
 		unset($this->_idaic->settings["footer_links"]['licence']);
 
-		return $this->_idaic->footer() . $this->getPiwik();
+		return $this->_idaic->footer();
+	}
+
+	function getFooterScripts($params, &$smarty) {
+		return $this->getPiwik() . $this->_idaic->getScripts("footer");
 	}
 
 	/**

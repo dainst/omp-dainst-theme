@@ -11,25 +11,22 @@
 // Button
 .cmp_button {
 	display: inline-block;
-	padding: 0 (@triple / 2);
-	background: #eee;
-	border: 1px solid #aaa;
-	border-top-color: #bbb;
-	border-radius: @radius;
-	box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
-	font-size: @font-sml;
-	line-height: @triple - 2; // account for border
-	font-weight: @bold;
-	color: @primary;
+	background: rgba(85,114,161,0.9);
+	border: 1px solid #304d7c;
+	color: white;
+	background-color: #37588e;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+  	border-radius: 4px;
 	text-decoration: none;
-	text-shadow: 0px 1px #fff;
+  	white-space: nowrap;
 
 	&:hover,
 	&:focus {
-		box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.1);
-		background: @primary;
-		border-color: @primary;
 		color: #fff;
+		background-color: #294169;
+		border-color: #1f3150;
 		text-shadow: none;
 	}
 }
@@ -53,13 +50,11 @@
 		line-height: @triple;
 		text-align: center;
 		background: @primary;
-		box-shadow: inset 0 -1em 1em rgba(0, 0, 0, 0.2);
 		color: #fff;
 	}
 
 	&:hover:after,
 	&:focus:after {
-		box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.2);
 		background: @primary-lift;
 	}
 }
@@ -337,16 +332,12 @@
 // List of monographs
 .cmp_monographs_list {
 	position: relative;
-	margin: (@triple * 2) -@base;
-	border-top: @bg-border;
+	margin: @base;
+	/*border-top: @bg-border;*/
 
 	> .title {
-		padding: 0 @base;
-		position: absolute;
-		top: -15px;
-		left: @base;
+
 		margin: 0;
-		padding: 0 @base;
 		background: @bg;
 		font-size: @font-bump;
 		font-weight: @normal;
@@ -356,7 +347,7 @@
 
 	.obj_monograph_summary {
 		padding: @triple @base;
-		border-bottom: @bg-border;
+		/*border-bottom: @bg-border;*/
 	}
 
 	.row:last-child .obj_monograph_summary:last-child,
@@ -365,13 +356,13 @@
 	}
 
 	@media(min-width: @screen-phone) {
-		margin-left: -@double;
-		margin-right: -@double;
-
+		/*margin-left: -@double;
+		margin-right: -@double;*/
+/*
 		.obj_monograph_summary {
 			padding-left: @double;
 			padding-right: @double;
-		}
+		}*/
 	}
 
 	@media(min-width: @screen-tablet) {
@@ -380,53 +371,42 @@
 			left: @double;
 		}
 
-		.obj_monograph_summary {
+		/*.obj_monograph_summary {
 			padding: @triple;
-		}
+		}*/
 	}
 
 	@media(min-width: @screen-desktop) {
-		margin-left: -@triple;
-		margin-right: -@triple;
-
+		/*margin-left: -@triple;
+		margin-right: -@triple;*/
+/*
 		.obj_monograph_summary {
 			padding: @triple;
-		}
+		}*/
 	}
 
 	@media(min-width: @screen-lg-desktop) {
-		border-top: @bg-border;
+		/*border-top: @bg-border;*/
 
 		.row {
 			.pkp_helpers_clear;
-			border-bottom: @bg-border;
+			/*border-bottom: @bg-border;*/
 		}
 
 		.obj_monograph_summary {
 			position: relative;
 			float: left;
 			width: 50%;
-			border-bottom: none;
 
-			&:first-child {
-				padding-right: @triple;
-				border-top: none;
-				border-right: @bg-border;
-			}
 		}
 
-		.obj_monograph_summary + .obj_monograph_summary {
-			padding-left: @triple;
-			margin-left: -1px; // ensure right/left borders overlap
-			border-left: @bg-border;
-		}
 
 		.obj_monograph_summary.is_featured {
 			float: none;
 			width: 100%;
 			border-right: none;
 			border-left: none;
-			border-bottom: @bg-border;
+			/*border-bottom: @bg-border;*/
 
 			&:last-child {
 				border-bottom: none;
@@ -500,8 +480,6 @@
 	@media(min-width: @screen-tablet) {
 		padding-left: 0;
 		padding-right: 0;
-		border-top: @bg-border;
-		border-bottom: @bg-border;
 
 		.list {
 			display: block;
@@ -511,26 +489,19 @@
 			font-size: @font-sml;
 
 			// Left border
-			&:before {
-				content: ' ';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 1px;
-				height: 100%;
-				border-left: @bg-border;
-			}
+
 
 			a {
 				display: block;
 				padding: @double (@triple / 2);
-				border-left: 5px solid transparent;
 				font-weight: @bold;
 				text-decoration: none;
+			  	color: #37588e;
 
 				&:hover,
 				&:focus {
-					border-left-color: @primary;
+				  color: #223657;
+				  text-decoration: underline;
 				}
 			}
 
@@ -541,8 +512,7 @@
 			.current {
 
 				a {
-					color: @text-light;
-					border-left-color: @bg;
+					color: @text-hover;
 
 					&:hover,
 					&:focus {
@@ -557,16 +527,7 @@
 			position: relative;
 			width: 65%;
 
-			// Right border
-			&:before {
-				content: ' ';
-				position: absolute;
-				top: 0;
-				right: -1px;
-				width: 1px;
-				height: 100%;
-				border-left: @bg-border;
-			}
+
 
 			> li {
 				position: absolute;
@@ -582,7 +543,7 @@
 		}
 
 		.obj_spotlight {
-			padding: @triple;
+			padding: @triple @base;
 
 			.description {
 				font-size: @font-sml;
