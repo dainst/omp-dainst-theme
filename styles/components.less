@@ -332,7 +332,7 @@
 // List of monographs
 .cmp_monographs_list {
 	position: relative;
-	margin: @base;
+	margin: @base 0;
 	/*border-top: @bg-border;*/
 
 	> .title {
@@ -340,13 +340,13 @@
 		margin: 0;
 		background: @bg;
 		font-size: @font-bump;
-		font-weight: @normal;
+		font-weight: @bold;
 		line-height: @triple;
 		color: @text-light;
 	}
 
 	.obj_monograph_summary {
-		padding: @triple @base;
+		padding: @triple @base @triple 0;
 		/*border-bottom: @bg-border;*/
 	}
 
@@ -457,6 +457,7 @@
 // Spotlights
 .cmp_spotlights {
 	.pkp_helpers_clear;
+  	margin-bottom: @triple;
 
 	> ul {
 		&:extend(.pkp_unstyled_list);
@@ -480,6 +481,7 @@
 	@media(min-width: @screen-tablet) {
 		padding-left: 0;
 		padding-right: 0;
+
 
 		.list {
 			display: block;
@@ -509,6 +511,10 @@
 				border-bottom: @bg-border;
 			}
 
+			> li:last-child {
+			  border-bottom: none;
+			}
+
 			.current {
 
 				a {
@@ -516,7 +522,7 @@
 
 					&:hover,
 					&:focus {
-						border-left-color: @primary;
+
 					}
 				}
 			}
@@ -530,20 +536,27 @@
 
 
 			> li {
-				position: absolute;
-				top: 0;
-				left: -9999px;
-				margin-bottom: 0;
+			  opacity: 0;
+			  margin-bottom: 0;
+			  transition: visibility 1.2s, opacity 1.2s linear;
+			  position: absolute;
+			  top: 0px;
+			  background: white;
+			  height: 115px;
+			  overflow: hidden;
+			  visibility: hidden;
 
 				&.current {
 					position: relative;
 					left: auto;
+				  	opacity: 1;
+				  	visibility: visible;
 				}
 			}
 		}
 
 		.obj_spotlight {
-			padding: @triple @base;
+			padding: @triple @base @triple 0;
 
 			.description {
 				font-size: @font-sml;

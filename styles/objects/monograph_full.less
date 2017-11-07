@@ -69,13 +69,14 @@
 	}
 
 	.entry_details {
-		margin-left: -@double;
-		margin-right: -@double;
-		border-top: @bg-border;
 
 		.item {
 			padding: @double @base;
 			border-bottom: @bg-border;
+		}
+
+	  	.item:last-child {
+		  border-bottom: none
 		}
 
 		.label {
@@ -83,7 +84,7 @@
 			font-size: @font-sml;
 			font-weight: @normal;
 			color: @text-light;
-		  padding:0
+		  	padding:0
 		}
 
 		// Labels without values
@@ -234,8 +235,7 @@
 	@media(min-width: @screen-phone) {
 
 		.entry_details {
-			margin-left: -@double;
-			margin-right: -@double;
+
 
 			.item {
 				padding-left: @double;
@@ -245,13 +245,7 @@
 	}
 
 	@media(min-width: @screen-tablet) {
-	  /*
-		.row {
-			.pkp_helpers_clear;
-			margin-left: -@double;
-			margin-right: -@double;
-			border-top: @bg-border;
-		}*/
+
 
 		.main_entry {
 			float: left;
@@ -264,25 +258,19 @@
 			float: left;
 			width: @sidebar-width;
 			border-top: none;
+		  	margin-top: -40px;
 
 			.item {
-
 				padding: @base;
-
-
 			}
 		}
 	}
 
 	@media(min-width: @screen-desktop) {
-		/*
-		.row {
-			margin-left: -@triple;
-			margin-right: -@triple;
-		}*/
+
 
 		.main_entry {
-			padding: @base @triple;
+			padding: @base 0;
 			width: @screen-desktop-container - (@sidebar-width * 2);
 		}
 
@@ -297,7 +285,7 @@
 	@media(min-width: @screen-lg-desktop) {
 
 		.main_entry {
-			width: @screen-lg-desktop-container - (@sidebar-width * 2);
+			width: @screen-lg-desktop-container - (@sidebar-width * 2) - (@triple * 2);
 		}
 	}
 }

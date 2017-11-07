@@ -1,114 +1,34 @@
 /**
  * @file plugins/themes/default/js/main.js
  *
- * Copyright (c) 2014-2017 Simon Fraser University
- * Copyright (c) 2000-2017 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Handle JavaScript functionality unique to this theme.
  */
 (function($) {
 
-	// Initialize dropdown navigation menus
-	// See bootstrap dropdowns: https://getbootstrap.com/docs/4.0/components/dropdowns/
-	if (typeof $.fn.dropdown !== 'undefined') {
-		var $nav = $('#navigationPrimary, #navigationUser'),
-		$submenus = $('ul', $nav);
 
-		$submenus.each(function(i) {
-			var id = 'pkpDropdown' + i;
-			$(this)
-				.addClass('dropdown-menu')
-				.attr('aria-labelledby', id);
-			$(this).siblings('a')
-				.attr('data-toggle', 'dropdown')
-				.attr('aria-haspopup', true)
-				.attr('aria-expanded', false)
-				.attr('id', id)
-				.attr('href', '#');
-		});
+	/* dainst */
 
-		$('[data-toggle="dropdown"]').dropdown();
-	}
+	// spotlights (couldnt find the original implementationj so fuck it */
+	jQuery("a[data-spotlight]").mouseenter(function(e) {
 
-	// Register click handlers for the search panel
-	var headerSearchPanelIsClosing = false,
-	    headerSearchForm = $('#headerNavigationContainer .cmp_search'),
-	    headerSearchPrompt = $('.headerSearchPrompt', headerSearchForm),
-		headerSearchCancel = $('.headerSearchCancel', headerSearchForm),
-		headerSearchInput = $('input[name="query"]', headerSearchForm);
+		var spotlightNumber = jQuery(e.currentTarget).data('spotlight');
+		console.log(spotlightNumber);
+		jQuery(".cmp_spotlights ul.spotlights li.current").toggleClass("current");
+		jQuery(".cmp_spotlights li.spotlight_" + spotlightNumber).toggleClass("current");
+		jQuery(".cmp_spotlights ul.list li.current").toggleClass("current");
+		jQuery(e.currentTarget).parent("li").toggleClass("current");
 
-	// Register events
-	headerSearchPrompt.on('click', triggerSearchPanel);
-	headerSearchCancel.on('click', closeSearchPanel);
-	headerSearchInput.on('blur', function() {
-		if(!headerSearchInput.val() && headerSearchForm.hasClass('is_open')) {
-			closeSearchPanel();
-		}
-	});
-	headerSearchForm.on('submit', function() {
-		if(headerSearchForm.hasClass('is_searching')) {
-			return;
-		}
-		headerSearchForm.addClass('is_searching');
-	});
-	headerSearchForm.on('keyup', function(e) {
-		if(headerSearchForm.hasClass('is_open') && e.keyCode == 27) {
-			closeSearchPanel();
-		}
-	});
+	})
 
-	/**
-	 * Open or submit search form
-	 *
-	 * @param Event e Optional event handler
-	 */
-	function triggerSearchPanel(e) {
 
-		if (headerSearchPanelIsClosing) {
-			return;
-		}
+	//data-spotlight="1"
 
-		if (typeof e !== 'undefined') {
-			e.preventDefault();
-			e.stopPropagation();
-		}
 
-		if (headerSearchForm.hasClass('is_open')) {
-			headerSearchForm.submit();
-			return;
-		}
 
-		headerSearchForm.addClass('is_open');
-		setTimeout(function() {
-			headerSearchForm.find('input[type="text"]').focus();
-		},200);
-	}
 
-	/**
-	 * Close the search panel
-	 *
-	 * @param Event e Optional event handler
-	 */
-	function closeSearchPanel(e) {
 
-		if (headerSearchPanelIsClosing) {
-			return;
-		}
-
-		if (typeof e !== 'undefined') {
-			e.preventDefault();
-			e.stopPropagation();
-		}
-
-		headerSearchPanelIsClosing = true;
-		headerSearchForm.removeClass('is_open');
-
-		setTimeout(function() {
-			headerSearchPanelIsClosing = false;
-			headerSearchInput.val('');
-		},300)
-	}
+	/* from the default theme */
 
 	// Modify the Chart.js display options used by UsageStats plugin
 	document.addEventListener('usageStatsChartOptions.pkp', function(e) {

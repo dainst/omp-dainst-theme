@@ -14,6 +14,10 @@
 	font-size: @font-base;
 	line-height: @line-base;
 
+  	&:first-child {
+	  padding: 0 @double;
+	}
+
 	.title {
 		display: block;
 		margin-bottom: @base;
@@ -30,7 +34,7 @@
 			&:extend(.pkp_unstyled_list);
 
 			li {
-				line-height: @line-base;
+				line-height: 10px;
 				padding: @half 0;
 			}
 		}

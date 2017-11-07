@@ -19,8 +19,8 @@
 
 	h2 {
 		font-family: @font-heading;
-		font-size: @font-lead;
-		line-height: @line-lead;
+		font-size: @font-bump;
+		line-height: @line-bump;
 		font-weight: @bold;
 	}
 
@@ -28,7 +28,7 @@
 		font-family: @font-heading;
 		font-size: @font-bump;
 		line-height: @line-bump;
-		font-weight: @bold;
+		font-weight: @normal;
 	}
 
 	h4 {
@@ -91,8 +91,9 @@
 		// Description and image for catalog category/series
 		.about_section {
 			.pkp_helpers_clear;
+		  	margin: @base 0 @triple 0;
 			color: @text-light;
-			line-height: @triple;
+			line-height: @line-base;
 
 			.cover {
 				float: right;
@@ -116,7 +117,6 @@
 
 			@media(min-width: @screen-phone) {
 				font-size: @font-bump;
-				font-style: italic;
 			}
 		}
 	}
