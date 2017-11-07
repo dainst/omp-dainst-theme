@@ -34,10 +34,11 @@
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: center;
+	/*margin-right: @sidebar-width; ??? */
+  	line-height: 0;
 
-	> a {
-		padding-top: @base;
-		padding-bottom: @base;
+
+  > a {
 
 		&:focus {
 			outline: 0;
@@ -47,38 +48,87 @@
 	.is_img {
 		display: inline-block;
 
+	  	position: relative;
+
+		@media(min-width: @screen-desktop) {
+		  margin-right: @sidebar-width;
+		}
+
+	  	.overlay_text {
+		  position: absolute;
+		  font-family: @font-site-title;
+		  font-size: @font-header;
+		  font-weight: 500;
+		  line-height: @line-header;
+		  color: white;
+		  text-decoration: none;
+		  margin: 10px 12px;
+		  top: 55%;
+		  left: 30px;
+		}
+
 		&:focus {
 			box-shadow: 0 0 1px @text-bg-base;
 		}
 
 		img {
-			display:block;
-			max-height: 80px; // must match height - padding of .is_img
-			max-width: 100%;
-			width: auto;
-			height: auto;
+		  display:block;
+
+		  margin-left: 1px;
+		  width: auto;
+		  height: auto;
+		  padding: 0  @double;
+		  border-left: 1px solid @bg-shade;
+		  border-right: 1px solid @bg-shade;
+
+		  /*@media(min-width: @screen-tablet) {
+			width: @screen-tablet-container - @sidebar-width + 1;
+
+			stand: headline bild und text beim kleiner machen stimmt nicht
+
+		  }*/
+		  /*@media(min-width: @screen-desktop) {*/
+			width: @screen-desktop-container - @sidebar-width + 1;
+
+		  @media(max-width: @screen-desktop) {
+			width: @screen-desktop-container - @sidebar-width + 197;
+		  }
+
+
+		  @media(min-width: @screen-lg-desktop) {
+			width: @screen-lg-desktop-container - @sidebar-width + 1;
+		  }
+
 		}
 	}
 
-	.is_text {
-		font-family: @font-site-title;
-		position: relative;
-		font-size: @font-header;
-		font-weight: 500;
-		line-height: @line-header;
-		color: #6580aa;
-		text-decoration: none;
-		display: block;
-	  	padding: (@triple * 3) @triple (@triple * 3);
+  	.is_text {
+	  display: inline-block;
+	  margin-right: @sidebar-width;
+	  border-left: 1px solid @bg-shade;
+	  border-right: 1px solid @bg-shade;
+	}
 
-		&:focus {
+	.is_text span {
+	  font-family: @font-site-title;
+	  font-size: @font-header;
+	  font-weight: 500;
+	  line-height: @line-header;
+	  background-color: #6580aa;
+	  color: white;
+	  text-decoration: none;
+	  display: block;
+	  padding: (@triple * 3) 0 (@triple * 3);
+	  margin:  @double;
+	  width: @screen-lg-desktop-container - @sidebar-width - (2 * @double) - 1;
+	  height: auto;
+
+
+	  &:focus {
 			text-decoration: underline;
 		}
 	}
 
-	@media(min-width: @screen-desktop) {
-		text-align: left;
-	}
 }
 
 // The padding to apply to top-level items in the navigation row

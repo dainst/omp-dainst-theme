@@ -10,9 +10,9 @@
  */
 
 .pkp_block {
-	padding: @triple @double;
-	font-size: @font-base;
-	line-height: @line-base;
+	padding: @double;
+	font-size: @font-sml;
+	line-height: @line-sml;
 
   	&:first-child {
 	  padding: 0 @double;
@@ -22,9 +22,9 @@
 		display: block;
 		margin-bottom: @base;
 		font-family: @font-heading;
-		font-size: @font-bump;
+		font-size: @font-sml;
 		font-weight: @bold;
-		line-height: @line-bump;
+		line-height: @line-sml;
 		color: @text-light;
 	}
 
@@ -56,9 +56,7 @@
 		text-decoration: none;
 	}
 
-	@media(min-width: @screen-desktop) {
-		padding: @triple;
-	}
+
 }
 
 // Browse sidebar block
