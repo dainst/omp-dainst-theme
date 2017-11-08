@@ -57,7 +57,7 @@
 	  	.overlay_text {
 		  position: absolute;
 		  font-family: @font-site-title;
-		  font-size: @font-header;
+		  font-size: @font-super;
 		  font-weight: 500;
 		  line-height: @line-header;
 		  color: white;
@@ -65,35 +65,42 @@
 		  margin: 10px 12px;
 		  top: 55%;
 		  left: 30px;
+
+		  @media (max-width: @screen-tablet) {
+			font-size: @font-header * 0.75;
+		  }
+
+		  @media (max-width: @screen-phone) {
+			font-size: @font-header / 2;
+		  }
+
 		}
 
 		&:focus {
 			box-shadow: 0 0 1px @text-bg-base;
 		}
 
+
+
 		img {
-		  display:block;
+		  display: block;
 
 		  margin-left: 1px;
 		  width: auto;
 		  height: auto;
-		  padding: 0  @double;
-		  border-left: 1px solid @bg-shade;
-		  border-right: 1px solid @bg-shade;
+		  padding: 0;
+		  padding: 0 @double;
 
-		  /*@media(min-width: @screen-tablet) {
-			width: @screen-tablet-container - @sidebar-width + 1;
 
-			stand: headline bild und text beim kleiner machen stimmt nicht
-
-		  }*/
-		  /*@media(min-width: @screen-desktop) {*/
-			width: @screen-desktop-container - @sidebar-width + 1;
-
-		  @media(max-width: @screen-desktop) {
-			width: @screen-desktop-container - @sidebar-width + 197;
+		  @media (min-width: @screen-tablet) {
+			border-left: 1px solid @bg-shade;
+			border-right: 1px solid @bg-shade;
+		  	width: @screen-tablet-container + 1;
 		  }
 
+		  @media(min-width: @screen-desktop) {
+			width: @screen-desktop-container - @sidebar-width + 1;
+		  }
 
 		  @media(min-width: @screen-lg-desktop) {
 			width: @screen-lg-desktop-container - @sidebar-width + 1;
@@ -107,11 +114,20 @@
 	  margin-right: @sidebar-width;
 	  border-left: 1px solid @bg-shade;
 	  border-right: 1px solid @bg-shade;
+	  &:hover {
+		text-decoration: none;
+	  }
+
+	  &:focus {
+		text-decoration: underline;
+	  }
 	}
+
+
 
 	.is_text span {
 	  font-family: @font-site-title;
-	  font-size: @font-header;
+	  font-size: @font-super;
 	  font-weight: 500;
 	  line-height: @line-header;
 	  background-color: #6580aa;
@@ -124,9 +140,7 @@
 	  height: auto;
 
 
-	  &:focus {
-			text-decoration: underline;
-		}
+
 	}
 
 }

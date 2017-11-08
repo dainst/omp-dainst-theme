@@ -40,9 +40,7 @@
                Otherwise that should go to the page title. *}
 			{if $requestedOp == 'index'}<h1 class="pkp_site_name">{else}<div class="pkp_site_name">{/if}
 				{if $currentContext && $multipleContexts}
-					{url|assign:"homeUrl" journal="index" router=$smarty.const.ROUTE_PAGE}
-					{url|assign:"homeUrl" journal="index" router=$smarty.const.ROUTE_PAGE}
-					{url|assign:"homeUrl" journal="index" router=$smarty.const.ROUTE_PAGE}
+					{url|assign:"homeUrl" press="index" router=$smarty.const.ROUTE_PAGE}
 				{else}
 					{url|assign:"homeUrl" page="index" router=$smarty.const.ROUTE_PAGE}
 				{/if}
