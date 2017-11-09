@@ -83,28 +83,28 @@
 
 
 		img {
-		  display: block;
+		  	display: block;
+		  	margin-left: 1px;
+		  	width: auto;
+		  	height: auto;
+		  	padding-top: 0;
+		  	padding-left: (@double - 1);
+			padding-bottom: 0;
+			padding-right: @double;
 
-		  margin-left: 1px;
-		  width: auto;
-		  height: auto;
-		  padding: 0;
-		  padding: 0 @double;
+			@media (min-width: @screen-tablet) {
+				border-left: 1px solid @bg-shade;
+				border-right: 1px solid @bg-shade;
+				width: @screen-tablet-container + 1;
+			}
 
+			@media(min-width: @screen-desktop) {
+			  	width: @screen-desktop-container - @sidebar-width + 1;
+			}
 
-		  @media (min-width: @screen-tablet) {
-			border-left: 1px solid @bg-shade;
-			border-right: 1px solid @bg-shade;
-		  	width: @screen-tablet-container + 1;
-		  }
-
-		  @media(min-width: @screen-desktop) {
-			width: @screen-desktop-container - @sidebar-width + 1;
-		  }
-
-		  @media(min-width: @screen-lg-desktop) {
-			width: @screen-lg-desktop-container - @sidebar-width + 1;
-		  }
+			@media(min-width: @screen-lg-desktop) {
+			  	width: @screen-lg-desktop-container - @sidebar-width + 1;
+			}
 
 		}
 	}

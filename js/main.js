@@ -10,7 +10,8 @@
 	/* dainst */
 
 	// spotlights (couldnt find the original implementationj so fuck it */
-	jQuery("a[data-spotlight]").mouseenter(function(e) {
+
+	function changeHighlight(e) {
 
 		var spotlightNumber = jQuery(e.currentTarget).data('spotlight');
 		console.log(spotlightNumber);
@@ -19,7 +20,10 @@
 		jQuery(".cmp_spotlights ul.list li.current").toggleClass("current");
 		jQuery(e.currentTarget).parent("li").toggleClass("current");
 
-	})
+	}
+
+
+	jQuery("a[data-spotlight]").mouseenter(changeHighlight).click(changeHighlight);
 
 
 	//data-spotlight="1"

@@ -1,3 +1,18 @@
 .row {
 	margin: 0 !important;
 }
+/* debug */
+
+#navbar-item-aaa-warning {
+	background: yellow;
+	position: absolute;
+	left: 50%;
+}
+
+#navbar-item-aaa-warning.test-server-warning {
+	background: orange
+}
+
+#navbar-item-aaa-warning.dev-server-warning {
+	background: red
+}

@@ -490,9 +490,6 @@
 			width: 35%;
 			font-size: @font-sml;
 
-			// Left border
-
-
 			a {
 				display: block;
 				padding: @double (@triple / 2);
@@ -509,13 +506,22 @@
 
 			> li {
 				border-bottom: @bg-border;
-			}
+			  	border-radius: 0;
 
-			> li:last-child {
-			  border-bottom: none;
+			  	&:first-child {
+				  	border-top-left-radius: 3px;
+				  	border-top-right-radius: 3px;
+				}
+
+			  	&:last-child {
+					border-bottom: none;
+				  	border-bottom-left-radius: 3px;
+				  	border-bottom-right-radius: 3px;
+			  	}
 			}
 
 			.current {
+			  	background: #ddd;
 
 				a {
 					color: @text-hover;
@@ -533,24 +539,22 @@
 			position: relative;
 			width: 65%;
 
-
-
 			> li {
-			  opacity: 0;
-			  margin-bottom: 0;
-			  transition: visibility 1.2s, opacity 1.2s linear;
-			  position: absolute;
-			  top: 0px;
-			  background: white;
-			  height: 115px;
-			  overflow: hidden;
-			  visibility: hidden;
+				opacity: 0;
+				margin-bottom: 0;
+				transition: visibility 1.2s, opacity 1.2s linear;
+				position: absolute;
+				top: 0px;
+				background: white;
+				height: 115px;
+				overflow: hidden;
+				visibility: hidden;
 
 				&.current {
 					position: relative;
 					left: auto;
-				  	opacity: 1;
-				  	visibility: visible;
+					opacity: 1;
+					visibility: visible;
 				}
 			}
 		}
