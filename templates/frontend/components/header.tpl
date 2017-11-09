@@ -48,7 +48,6 @@
 					<a href="{$homeUrl}" class="is_img">
 						<span class="overlay_text">iDAI.publications/books</span>
 						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-
 					</a>
 				{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 					<a href="{$homeUrl}" class="is_text"><span>{$displayPageHeaderTitle}</span></a>
@@ -62,7 +61,6 @@
 					<a href="{$homeUrl}" class="is_img">
 						<span class="overlay_text">iDAI.publications/books</span>
 						<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
-
 					</a>
 				{/if}
 			{if $requestedOp == 'index'}</h1>{else}</div>{/if}
