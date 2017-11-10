@@ -67,11 +67,11 @@
 		  left: 30px;
 
 		  @media (max-width: @screen-tablet) {
-			font-size: @font-header * 0.75;
+			font-size: @font-super * 0.75;
 		  }
 
 		  @media (max-width: @screen-phone) {
-			font-size: @font-header / 2;
+			font-size: @font-super / 2;
 		  }
 
 		}
@@ -91,6 +91,12 @@
 		  	padding-left: (@double - 1);
 			padding-bottom: 0;
 			padding-right: @double;
+
+		  	@media (max-width: @screen-phone) {
+			  padding-left: 0;
+			  padding-right: 0;
+			  margin-left: 0;
+			}
 
 			@media (min-width: @screen-tablet) {
 				border-left: 1px solid @bg-shade;
@@ -142,6 +148,11 @@
 
 
 	}
+
+  @media(max-width: @screen-phone) {
+	margin-top: -10px;
+  }
+
 
 }
 

@@ -240,7 +240,6 @@
 
 		.entry_details {
 
-
 			.item {
 				padding-left: @double;
 				padding-right: @double;
@@ -260,7 +259,7 @@
 
 		.entry_details {
 			float: left;
-			width: @sidebar-width + @double;
+			width: @sidebar-width - @quadruple;
 			border-top: none;
 		  	margin-top: -40px;
 
@@ -272,13 +271,13 @@
 
 	@media(min-width: @screen-desktop) {
 
-
 		.main_entry {
 			padding: @base 0;
 			width: @screen-desktop-container - (@sidebar-width * 2);
 		}
 
 		.entry_details {
+		  	width: @sidebar-width - @quadruple;
 
 			.item {
 				padding: @base;
@@ -290,6 +289,10 @@
 
 		.main_entry {
 			width: @screen-lg-desktop-container - (@sidebar-width * 2) - (@triple * 2);
+		}
+
+	  	.entry_details {
+		  width: @sidebar-width + @double;
 		}
 	}
 }

@@ -56,6 +56,13 @@
 		text-decoration: none;
 	}
 
+  	@media(max-width: @screen-phone) {
+	  padding-left: @base;
+	  padding-right: @base;
+	  &:first-child {
+		padding: 0 @base;
+	  }
+	}
 
 }
 
@@ -89,6 +96,8 @@
     .current a:hover {
 	  text-decoration: none;
 	}
+
+
 }
 
 // Information sidebar block
