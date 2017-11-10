@@ -18,12 +18,12 @@
 
 	&:before {
 		.fa();
-		content: @fa-var-file-text-o;
+		content: '\e022';
 		margin-right: 0.25em;
 	}
 
 	&.pdf:before {
-		content: @fa-var-file-pdf-o;
+		content: '\e022';
 	}
 
 	&.restricted {
@@ -37,8 +37,8 @@
 		}
 
 		&:before {
-			&:extend( .fa );
-			content: @fa-var-lock;
+			.fa();
+			content: '\e033';
 			color: @offset;
 		}
 	}

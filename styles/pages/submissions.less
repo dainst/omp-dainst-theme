@@ -17,8 +17,6 @@
 			padding: 0;
 			list-style: none;
 			font-size: @font-sml;
-			border: @bg-border;
-			border-bottom: none;
 		}
 
 		li {
@@ -27,7 +25,12 @@
 			border-bottom: @bg-border;
 
 			&:before {
-				&:extend(.fa all);
+			  	.fa();
+			  	content: "\e013";
+			}
+
+		  	&:last-child {
+			  border: none
 			}
 		}
 	}
@@ -35,12 +38,13 @@
 	@media(min-width: @screen-phone) {
 
 		.submission_checklist li {
-				padding: @double @double @double (@double * 2);
+				padding: @double @double @double (@double * 3);
 
 				&:before {
-					content: @fa-var-check;
+					font-family: Glyphicons Halflings;
+					content: "\e013";
 					position: absolute;
-					left: @double;
+					left: @double + 3;
 					top: 50%;
 					-webkit-transform: translate(-50%, -50%);
 					-moz-transform: translate(-50%, -50%);
@@ -48,7 +52,6 @@
 					-o-transform: translate(-50%, -50%);
 					transform: translate(-50%, -50%);
 					font-size: @font-lead;
-					color: @yes;
 				}
 		}
 	}

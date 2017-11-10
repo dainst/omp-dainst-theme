@@ -1,0 +1,15 @@
+// replaces font awsome since its included in idai components anyway
+
+
+.fa() {
+  display: inline-block;
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+
+  font-family: Glyphicons Halflings;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+}
+
+

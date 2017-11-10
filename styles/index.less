@@ -9,17 +9,26 @@
  *
  */
 
-// For now we'll inherit a lot of the work from the backend. In the future this
-// could probably be changed to streamline some things. Extra components that
-// could be removed to reduce the CSS file size include:
-//
-// FontAwesome and icon definitions
-// Lots of helpers which may not be needed
-@import "../../../../lib/pkp/styles/fontawesome.less";
+/*
+
+removed font awesome (for the favor of glyphicons) and helpers.
+
+stand:
+icons noch nicht ganz richtig ausgerichtet & edit icon fehlt z.B
+
+
+ */
+
+
+
+
+
+@import "glyphicons.less";
+//@import "../../../../lib/pkp/styles/fontawesome.less";
 @import "../../../../lib/ui-library/src/styles/normalize.less";
 @import "../../../../lib/pkp/styles/variables.less";
 @import "../../../../lib/pkp/styles/utils.less";
-@import "../../../../lib/pkp/styles/helpers.less";
+//@import "../../../../lib/pkp/styles/helpers.less";
 @import "../../../../lib/pkp/styles/controllers/extrasOnDemand.less";
 
 // Styles unique to this theme

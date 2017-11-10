@@ -95,24 +95,13 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->_idaic->settings["scripts"]["jquery"]["include"] = false;
 		$this->_idaic->settings["scripts"]["bootstrap"]["include"] = false;
 		$this->_idaic->settings["scripts"]["navbar"]["include"] = "footer";
+		$this->_idaic->settings["styles"]["idai-components.min"]["include"] = true;
 
 
-
-		// continue
 
 		$request = Application::getRequest();
 
-		// Load icon font FontAwesome - http://fontawesome.io/
-		if (Config::getVar('general', 'enable_cdn')) {
-			$url = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css';
-		} else {
-			$url = $request->getBaseUrl() . '/lib/ui-library/static/fontawesome/fontawesome.css';
-		}
-		$this->addStyle(
-			'fontAwesome',
-			$url,
-			array('baseUrl' => '')
-		);
+
 
 		// Load jQuery from a CDN or, if CDNs are disabled, from a local copy.
 		$min = Config::getVar('general', 'enable_minified') ? '.min' : '';
@@ -131,10 +120,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->addScript('jQueryUI', $jqueryUI, array('baseUrl' => ''));
 		$this->addScript('jQueryTagIt', $request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js', array('baseUrl' => ''));
 
-		// Load Bootsrap's dropdown
-		//$this->addScript('popper', 'js/lib/popper/popper.js');
-		//$this->addScript('bsUtil', 'js/lib/bootstrap/util.js');
-		//$this->addScript('bsDropdown', 'js/lib/bootstrap/dropdown.js');
 
 		// Load custom JavaScript for this theme
 		$this->addScript('default', 'js/main.js');

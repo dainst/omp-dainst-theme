@@ -145,7 +145,7 @@
 		> div,
 		.value li {
 			.pkp_helpers_clear;
-			margin-bottom: @base * 3;
+			margin-bottom: @base;
 
 			&:last-child {
 				margin-bottom: 0;
@@ -181,7 +181,7 @@
 
 				&:before {
 					.fa();
-					content: @fa-var-download;
+					content: '\e202';
 				}
 			}
 		}
@@ -198,7 +198,7 @@
 
 			&:after {
 				.fa();
-				content: @fa-var-external-link;
+				content: '\e144';
 				margin-left: 0.25em;
 			}
 		}
@@ -217,7 +217,7 @@
 				overflow: hidden;
 
 				&:before {
-					content: @fa-var-download; // Always use download icon
+					content: '\e202'; // Always use download icon
 					position: relative;
 					top: -1px;
 					margin-right: 0;
@@ -231,7 +231,7 @@
 			text-align: center;
 
 			&.pdf:before {
-				content: @fa-var-file-pdf-o;
+				content: '\e202';
 			}
 		}
 	}
@@ -260,7 +260,7 @@
 
 		.entry_details {
 			float: left;
-			width: @sidebar-width;
+			width: @sidebar-width + @double;
 			border-top: none;
 		  	margin-top: -40px;
 
