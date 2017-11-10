@@ -312,21 +312,30 @@
 
 // Notification
 .cmp_notification {
+	border: 1px solid transparent;
+	border-radius: 4px;
 	display: block;
 	width: 100%;
-	padding: @double;
+	padding: @triple;
 	margin-bottom: @quadruple;
-	background: @bg-shade;
-	border-left: @half solid @primary;
+
 	font-size: @font-base;
 	line-height: @line-base;
 
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+	color: #31708f;
+
 	.success {
-		border-color: @yes;
+	  background-color: #dff0d8;
+	  border-color: #d6e9c6;
+	  color: #3c763d;
 	}
 
 	.no {
-		border-color: @no;
+	  background-color: #fcf8e3;
+	  border-color: #faebcc;
+	  color: #8a6d3b;
 	}
 }
 
