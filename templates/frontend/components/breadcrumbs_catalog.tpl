@@ -44,13 +44,11 @@
 			</li>
 		{/if}
 		<li class="current">
-			<h1>
-				{if $currentTitleKey}
-					{translate key=$currentTitleKey}
-				{else}
-					{$currentTitle|escape}
-				{/if}
-			</h1>
+			{if $currentTitleKey}
+				{translate key=$currentTitleKey}
+			{else}
+				{$currentTitle|escape}
+			{/if}
 		</li>
 	</ol>
 </nav>

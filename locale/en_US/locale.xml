@@ -15,7 +15,7 @@
 	<message key="plugins.themes.omp-dainst-theme.name">Dainst Theme</message>
 	<message key="plugins.themes.omp-dainst-theme.description">This theme implements the dainst theme.</message>
 
-
+	<message key="plugins.themes.dainst.imprint">Imprint</message>
 
 	<message key="plugins.themes.dainst.termsOfUse">Terms of Use</message>
 

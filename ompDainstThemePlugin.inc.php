@@ -18,6 +18,26 @@ import('lib.pkp.classes.plugins.ThemePlugin');
 class ompDainstThemePlugin extends ThemePlugin {
 
 	/*
+	 * stand:
+	 * - viewer ist drin
+	 * - breadcrump auch auf buchseite?
+	 *
+	 * - zenonlink..! // pubids -> verschieben! kann man immer noch machen
+	 *
+	 */
+
+
+	function register($category, $path) {
+		if (parent::register($category, $path)) {
+			if ($this->getEnabled()) {
+				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewerCallback'), HOOK_SEQUENCE_LATE);
+			}
+		}
+	}
+	//*/
+
+
+	/*
 	 * @copydoc ThemePlugin::isActive()
 	 */
 	public function isActive() {
@@ -81,7 +101,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$templateMgr->register_block("idai_navbar", array($this, "getNavbar"));
 		$templateMgr->register_function("idai_footer", array($this, "getFooter"));
 		$templateMgr->register_function("idai_footer_scripts", array($this, "getFooterScripts"));
-		$templateMgr->register_function("pdf_viewer", array($this, "getViewer"));
+		$templateMgr->register_function("idai_viewer", array($this, "getViewer"));
 		$templateMgr->register_function("idai_modal", array($this, "getModal"));
 
 		require_once($this->getFilePath() . '/lib/idai-components-php/idai-components.php');
@@ -468,10 +488,43 @@ class ompDainstThemePlugin extends ThemePlugin {
 	}
 
 
+	function viewerCallback($hookName, $args) {
+		$publishedMonograph =& $args[1];
+		$publicationFormat =& $args[2];
+		$submissionFile =& $args[3];
+
+		if ($submissionFile->getFileType() == 'application/pdf') {
+
+			$templateMgr = TemplateManager::getManager($this->getRequest());
+
+			//$templateMgr->assign("parent", $publishedMonograph->getSeriesTitle());
+
+			$seriesId = $publishedMonograph->getSeriesId();
+			if ($seriesId) {
+				$seriesDao = DAORegistry::getDAO("SeriesDAO");
+				$series = $seriesDao->getById($seriesId);
+				$templateMgr->assign('parent', $series);
+				$templateMgr->assign('type', "series");
+			}
+
+			$templateMgr->assign("currentTitle", $publishedMonograph->getFirstAuthor() . ': ' . $publishedMonograph->getLocalizedTitle());
+
+			$this->_idaic->settings["styles"]["small_footer"] = array(
+				"include" => true,
+				"src"	=> $this->theUrl . '/' . $this->pluginPath . '/styles/small_footer.css'
+			);
+
+			$templateMgr->display($this->getTemplatePath() . 'templates/display.tpl');
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * show the pdf reader
 	 *
-	 * registered as samrty function
+	 * registered as smarty function idai_viewer
 	 *
 	 * @param array $params
 	 * 	file - full url to pdf file
@@ -486,7 +539,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 			$url = $params['file'];
 		}
 
-		return "<iframe id='dainstPdfViewer' onload='setViewerHeight()' src='$url'></iframe>";
+		return "<iframe id='dainstPdfViewer' src='$url'></iframe>";
 
 		//$viewerSrc = $this->theUrl . '/plugins/themes/dainst/inc/dbv/viewer.html';
 	}
