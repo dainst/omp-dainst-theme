@@ -33,6 +33,8 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 */
 	public function init() {
 
+
+
 		// Register theme options
 		/*
 		$this->addOption('typography', 'radio', array(
@@ -70,8 +72,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->addStyle('stylesheet', 'styles/index.less');
 
 		// Store additional LESS variables to process based on options
-		$additionalLessVariables = array();
-
+		//$additionalLessVariables = array();
 
 		// dainst functions
 		$this->theUrl = Request::getBaseUrl();
@@ -81,8 +82,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$templateMgr->register_function("idai_footer", array($this, "getFooter"));
 		$templateMgr->register_function("idai_footer_scripts", array($this, "getFooterScripts"));
 		$templateMgr->register_function("pdf_viewer", array($this, "getViewer"));
-		$templateMgr->register_function("getOJSFolder", array($this, "getOJSFolder"));
-		$templateMgr->register_function("getOJSDomain", array($this, "getOJSDomain"));
+		$templateMgr->register_function("idai_modal", array($this, "getModal"));
 
 		require_once($this->getFilePath() . '/lib/idai-components-php/idai-components.php');
 
@@ -186,9 +186,48 @@ class ompDainstThemePlugin extends ThemePlugin {
 	}
 
 	function getHead($params, &$smarty) {
+
 		return $this->_idaic->header();
 	}
 
+
+	function getModal($params, &$smarty) {
+
+		$context = $smarty->get_template_vars('currentContext');
+
+		$button_ok  = "<button class='btn btn-primary' id='modal-dialog-ok'>" . AppLocale::translate("common.ok") . "</button>";
+		$button_esc = "<button class='btn btn-default' id='modal-dialog-esc'>" . AppLocale::translate("common.cancel") . "</button>";
+		$buttons_ok_esc = "<div class='row'><div class='btn-group pull-right'>$button_ok $button_esc</div></div>";
+
+		$modalContent = array();
+		if (Request::getRequestedOp() == 'register') {
+			$modalContent['title'] = AppLocale::translate("plugins.themes.dainst.termsOfUse");
+			$modalContent['body'] = $this->getPageContent('terms', $context->getId());
+			$modalContent['footer'] = $buttons_ok_esc;
+			$modalContent['class'] = "escapeable terms";
+		} else {
+			return "";
+		}
+
+		return "<div id='modal' class='{$modalContent['class']}'>
+				<div class='dialog'>
+					<div class='header'>{$modalContent['title']}</div>
+					<div class='body'>{$modalContent['body']}</div>
+					<div class='footer'>{$modalContent['footer']}</div>
+				</div>
+			</div>";
+
+	}
+
+
+	function getPageContent($page, $contextId) {
+		$staticPagesDao = DAORegistry::getDAO('StaticPagesDAO');
+		$staticPage = $staticPagesDao->getByPath($contextId, $page);
+		if ($staticPage) {
+			return $staticPage->getLocalizedContent();
+		}
+		return "x";
+	}
 
 
 	/**
@@ -382,12 +421,14 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * @return string
 	 */
 	function getFooter($params, &$smarty) {
+
+		$context = $smarty->get_template_vars('currentContext');
+
 		$this->_idaic->settings["footer_classes"] = array($params["mode"]);
 
 		$this->_idaic->settings["footer_links"]["termsofuse"] = array(
 			'label' => AppLocale::translate("plugins.themes.dainst.termsOfUse"),
-			'moreinfo' => AppLocale::translate("plugins.themes.dainst.termsOfUseText"), //'Terms of use',
-			'id' =>  'idai-footer-termsOfUse' // important
+			'href' => $smarty->smartyUrl(array("page" => "terms", "context" => $context->getPath()), $smarty)
 		);
 
 		$this->_idaic->settings["footer_links"]["contact"] = array(
@@ -397,9 +438,8 @@ class ompDainstThemePlugin extends ThemePlugin {
 		);
 
 		$this->_idaic->settings["footer_links"]["imprint"] = array(
-			'label' => AppLocale::translate("plugins.themes.dainst.imprint"), // report Bugs to
-			'moreinfo' => AppLocale::translate("plugins.themes.dainst.imprintText"),
-			'id' =>  'idai-footer-imprint' // important
+			'label' => AppLocale::translate("plugins.themes.dainst.imprint"),
+			'href' => $smarty->smartyUrl(array("page" => "imprint", "context" => $context->getPath()), $smarty)
 		);
 
 		$this->_idaic->settings['version']			= '';
@@ -509,6 +549,9 @@ class ompDainstThemePlugin extends ThemePlugin {
 		}
 		return $locales;
 	}
+
+
+
 
 }
 

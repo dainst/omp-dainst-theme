@@ -15,112 +15,11 @@
 	<message key="plugins.themes.omp-dainst-theme.name">Dainst Theme</message>
 	<message key="plugins.themes.omp-dainst-theme.description">This theme implements the dainst theme.</message>
 
-	<!-- Theme options -->
-	<message key="plugins.themes.ompDainstTheme.option.typography.label">Typography</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.description">Choose a font combination that suits this journal.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.notoSans">Noto Sans: A digital-native font designed by Google for extensive language support.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.notoSerif">Noto Serif: A serif variant of Google's digital-native font.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.notoSerif_notoSans">Noto Serif/Noto Sans: A complementary pairing with serif headings and sans-serif body text.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.notoSans_notoSerif">Noto Sans/Noto Serif: A complementary pairing with sans-serif headings and serif body text.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.lato">Lato: A popular modern sans-serif font.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.lora">Lora: A wide-set serif font good for reading online.</message>
-	<message key="plugins.themes.ompDainstTheme.option.typography.lora_openSans">Lora/Open Sans: A complimentary pairing with serif headings and sans-serif body text.</message>
-	<message key="plugins.themes.ompDainstTheme.option.colour.label">Colour</message>
-	<message key="plugins.themes.ompDainstTheme.option.colour.description">Choose a colour for the header.</message>
 
 
-	<message key="plugins.themes.dainst.termsOfUseText">
-		<![CDATA[
-			<b>Nutzungsbedingungen</b>
-			Mit der Registrierung als Nutzer/in akzeptieren Sie die nachfolgenden Allgemeinen Geschäftsbedingungen für die Nutzung von „iDAI.publications“.
+	<message key="plugins.themes.dainst.termsOfUse">Terms of Use</message>
 
-			<br><br><b>Anmeldung</b><br>
-			1. Im Rahmen der Registrierung muss der/die Nutzer/in seine Kontaktdaten angeben. Der/Die Nutzer/in ist verpflichtet, ausschließlich wahre und nicht irreführende Angaben bei der Registrierung zu machen.<br>
-			2. Der/Die Nutzer/in ist verpflichtet, seine Zugangsdaten geheim zu halten und vor dem Zugriff Dritter zu schützen. Die Nutzung der Zugangsdaten ist ausschließlich dem/der registrierten Nutzer/in gestattet. Die Haftung des/der Nutzer/in für eine Fremdnutzung richtet sich nach den gesetzlichen Vorschriften.
-
-			<br><br><b>Urheberrecht</b><br>
-			Die auf den WWW-Seiten des Publikationsarchivs „iDAI.publications“ des Deutschen Archäologischen Instituts veröffentlichten Inhalte (Texte, Bilder, Grafiken) und Aufarbeitung/Darstellung des Inhalts (Layout, Metadaten usw.) unterliegen dem Schutz des Urheberrechts gemäß dem Urheberrechtsgesetz der Bundesrepublik Deutschland, sofern im Einzelfall nicht anders angegeben.
-			Die Nutzung der Inhalte ist ausschließlich privaten Nutzerinnen/Nutzern für den eigenen wissenschaftlichen und sonstigen privaten Gebrauch gestattet. Zu diesem Zweck ist neben dem Recherchieren und Betrachten am Bildschirm auch das Herunterladen und Ausdrucken kleiner Teile erlaubt. Nicht gestattet ist das systematische oder automatisierte Herunterladen von Daten. Jede Art der Nutzung zu gewerblichen Zwecken ist untersagt. Jede weitere, vom Urheberrechtsgesetz nicht zugelassene Verwertung der Inhalte bedarf der vorherigen ausdrücklichen Zustimmung des Deutschen Archäologischen Instituts. Dies gilt insbesondere für die Vervielfältigung, Bearbeitung, Übersetzung, Einspeicherung, Verarbeitung bzw. Wiedergabe von Inhalten in Datenbanken oder anderen elektronischen Medien und Systemen. Mit dem Herunterladen von Inhalten erkennen Sie diese Nutzungsbedingungen an. Zu den Möglichkeiten einer Lizensierung von Nutzungsrechten wenden Sie sich bitte direkt an die verantwortlichen Herausgeberinnen/Herausgeber der entsprechenden Publikationsorgane, deren Kontaktdaten Sie den Deckblättern entnehmen können, oder an das Deutsche Archäologische Institut  (<a href="mailto:idai.publications@dainst.de">idai.publications@dainst.de</a>).
-
-
-			<br><br><b>Nutzungsausschluss</b><br>
-			Bei Vorliegen eines wichtigen Grundes kann das DAI den Zugang zum Portal „iDAI.publications“ vorübergehend oder dauerhaft sperren. Ein wichtiger Grund liegt vor, wenn die persönlichen Daten nicht wahrheitsgemäß eingetragen werden, fremde Zugangsdaten zur Nutzung verwendet werden oder der/die Nutzer/in gegen die geltenden Nutzungsbedingungen verstößt.
-
-			<br><br><b>Haftungsausschluss</b><br>
-			Das Deutsche Archäologische Institut ist bemüht, sein Webangebot stets aktuell, inhaltlich richtig und vollständig anzubieten. Dennoch ist das Auftreten von Fehlern nicht völlig auszuschließen. Das Deutsche Archäologische Institut übernimmt keine Haftung für die Aktualität, die inhaltliche Richtigkeit sowie für die Vollständigkeit der in ihrem Webangebot eingestellten Informationen, es sei denn, die Fehler wurden vorsätzlich oder grob fahrlässig aufgenommen. Dies bezieht sich auf eventuelle Schäden materieller oder ideeller Art Dritter, die durch die Nutzung dieses Webangebotes verursacht wurden. Alle Angebote sind freibleibend und unverbindlich. Das Deutsche Archäologische Institut behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.
-
-			<br><br><b>Externe Verweise und Links</b><br>
-			Das Deutsche Archäologische Institut erklärt hiermit ausdrücklich, dass bei direkten oder indirekten Verweisen auf fremde Webseiten („Hyperlinks“), die außerhalb des Verantwortungsbereiches des Deutschen Archäologischen Instituts liegen zum Zeitpunkt der Linksetzung keine illegalen Inhalte auf den zu verlinkenden Seiten erkennbar waren. Das DAI hat für diese Prüfung die ihm technisch möglichen und zumutbaren Anstrengungen unternommen. Auf die aktuelle und zukünftige Gestaltung, die Inhalte oder die Urheberschaft der verlinkten/verknüpften Seiten hat das Deutsche Archäologische Institut keinerlei Einfluss. Deshalb distanziert es sich hiermit ausdrücklich von allen Inhalten aller verlinkten/verknüpften Seiten, die nach der Linksetzung verändert wurden. Diese Feststellung gilt für alle innerhalb des eigenen Internetangebotes gesetzten Links und Verweise sowie für Fremdeinträge in vom Deutschen Archäologischen Institut eingerichteten Gästebüchern, Diskussionsforen, Linkverzeichnissen, Mailinglisten und in allen anderen Formen von Datenbanken, auf deren Inhalt externe Schreibzugriffe möglich sind. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargebotener Informationen entstehen, haftet allein der Anbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.
-Falls das Deutsche Archäologische Institut auf Seiten verweist, deren Inhalt Anlass zur Beanstandung gibt, bittet die Internet-Redaktion um Mitteilung. Teilen Sie uns bitte ebenso mit, wenn eigene Inhalte nicht fehlerfrei, aktuell, vollständig oder verständlich geschrieben sind.
-
-			<br><br><b>Schlussbestimmungen</b><br>
-			1. Sollten einzelne Regelungen dieser Allgemeinen Geschäftsbedingungen unwirksam sein oder werden, wird dadurch die Wirksamkeit der übrigen Regelungen nicht berührt.<br>
-			2. Gerichtsstand ist Berlin.<br>
-			3. Es gilt deutsches Recht unter Ausschluss des Internationalen Privatrechts.<br>
-			4. Der/die Nutzer/in kann diese Allgemeinen Geschäftsbedingungen unter dem auf <a href="https://publications.dainst.org/terms-of-use">https://publications.dainst.org/terms-of-use</a> erreichbaren Link abrufen, ausdrucken sowie herunterladen.<br>
-			]]>
-	</message>
 	<message key="plugins.themes.dainst.reportBugsTo">Report bugs to</message>
-	<message key="plugins.themes.dainst.imprint">Imprint</message>
-	<message key="plugins.themes.dainst.imprintText">
-		<![CDATA[
-			<b>Impressum</b><br><br>
-			Deutsches Archäologisches Institut<br>
-			Podbielskiallee 69–71, 14195 Berlin<br>
-			Tel: +49 30 187711-0<br>
-			Fax: +49 30 187711-191<br>
-			email: <a href="mailto:info@dainst.de">info@dainst.de</a>
-			<br><a href="http://www.dainst.org">www.dainst.org</a><br><br>
 
-			Das Deutsche Archäologische Institut ist eine Forschungsanstalt des Bundes im Geschäftsbereich des Auswärtigen Amtes.<br>
-			Es wird vertreten durch die Präsidentin Prof. Dr. Dr. h. c. Friederike Fless.<br><br>
-
-			Verantwortliche Redaktion<br>
-			Redaktion der Zentrale<br>
-			(<a href="mailto:idai.publications@dainst.de">idai.publications@dainst.de</a>)
-			<br><br>
-
-			<b>Datenschutzerklärung</b><br><br>
-			Geltungsbereich:<br>
-			Diese Datenschutzerklärung klärt Nutzer über die Art, den Umfang und Zwecke der Erhebung und Verwendung personenbezogener Daten durch den verantwortlichen Anbieter, das Deutsche Archäologische Institut, Podbielskiallee 69–71, 14195 Berlin, Tel: +49 30 187711-0, <a href="mailto:info@dainst.de">info@dainst.de</a>, auf dieser Website (im folgenden „Angebot”) auf.
-			<br>
-			Das Deutsche Archäologische Institut erhebt, verarbeitet und nutzt personenbezogene Daten der Nutzer unter Einhaltung der Datenschutzgesetze der Bundesrepublik Deutschland und der Datenschutzbestimmungen der Europäischen Union. Die rechtlichen Grundlagen des Datenschutzes finden sich im Bundesdatenschutzgesetz (BDSG) und dem Telemediengesetz (TMG).
-			<br><br>
-			Zugriffsdaten/Server-Logfiles:<br>
-			Der Anbieter (beziehungsweise sein Webspace-Provider) erhebt Daten über jeden Zugriff auf das Angebot (so genannte Serverlogfiles). Zu den Zugriffsdaten gehören:
-			Name der abgerufenen Webseite, Datei, Datum und Uhrzeit des Abrufs, übertragene Datenmenge, Meldung über erfolgreichen Abruf, Browsertyp nebst Version, das Betriebssystem des Nutzers, Referrer URL (die zuvor besuchte Seite), IP-Adresse und der anfragende Provider.
-			Der Anbieter verwendet die Protokolldaten nur für statistische Auswertungen zum Zweck des Betriebs, der Sicherheit und der Optimierung des Angebotes. Der Anbieter behält sich jedoch vor, die Protokolldaten nachträglich zu überprüfen, wenn aufgrund konkreter Anhaltspunkte der berechtigte Verdacht einer rechtswidrigen Nutzung besteht.
-			<br><br>
-			Umgang mit personenbezogenen Daten:<br>
-			Personenbezogene Daten sind Informationen, mit deren Hilfe eine Person bestimmbar ist, also Angaben, die zurück zu einer Person verfolgt werden können. Dazu gehören der Name, die E-Mail-Adresse oder die Telefonnummer. Aber auch Daten über Vorlieben, Hobbies, Mitgliedschaften oder welche Webseiten von jemandem angesehen wurden zählen zu personenbezogenen Daten.
-			Personenbezogene Daten werden von dem Anbieter nur dann erhoben, genutzt und weiter gegeben, wenn dies gesetzlich erlaubt ist oder die Nutzer in die Datenerhebung einwilligen.
-			<br><br>
-			Kontaktaufnahme:<br>
-			Bei der Kontaktaufnahme mit dem Anbieter (zum Beispiel per Kontaktformular oder E-Mail) werden die Angaben des Nutzers zwecks Bearbeitung der Anfrage sowie für den Fall, dass Anschlussfragen entstehen, gespeichert.
-			<br><br>
-			Kommentarabonnements:<br>
-			Die Nachfolgekommentare können durch Nutzer abonniert werden. Die Nutzer erhalten eine Bestätigungsemail, um zu überprüfen, ob sie der Inhaber der eingegebenen Emailadresse sind. Nutzer können laufende Kommentarabonnements jederzeit abbestellen. Die Bestätigungsemail wird Hinweise dazu enthalten.
-			<br><br>
-			Einbindung von Diensten und Inhalten Dritter:<br>
-			Es kann vorkommen, dass innerhalb dieses Onlineangebotes Inhalte Dritter, wie zum Beispiel Videos von YouTube, Kartenmaterial von Google-Maps, RSS-Feeds oder Grafiken von anderen Webseiten eingebunden werden. Dies setzt immer voraus, dass die Anbieter dieser Inhalte (nachfolgend bezeichnet als "Dritt-Anbieter") die IP-Adresse der Nutzer wahrnehmen. Denn ohne die IP-Adresse, könnten sie die Inhalte nicht an den Browser des jeweiligen Nutzers senden. Die IP-Adresse ist damit für die Darstellung dieser Inhalte erforderlich. Wir bemühen uns nur solche Inhalte zu verwenden, deren jeweilige Anbieter die IP-Adresse lediglich zur Auslieferung der Inhalte verwenden. Jedoch haben wir keinen Einfluss darauf, falls die Dritt-Anbieter die IP-Adresse zum Beispiel für statistische Zwecke speichern. Soweit dies uns bekannt ist, klären wir die Nutzer darüber auf.
-			<br><br>
-			Cookies:<br>
-			Cookies sind kleine Dateien, die es ermöglichen, auf dem Zugriffsgerät der Nutzer (PC, Smartphone o. ä.) spezifische, auf das Gerät bezogene Informationen zu speichern. Sie dienen zum einem der Benutzerfreundlichkeit von Webseiten und damit den Nutzern (zum Beispiel Speicherung von Logindaten). Zum anderen dienen sie dazu, um die statistische Daten der Webseitennutzung zu erfassen und sie zwecks Verbesserung des Angebotes analysieren zu können. Die Nutzer können auf den Einsatz der Cookies Einfluss nehmen. Die meisten Browser verfügen eine Option mit der das Speichern von Cookies eingeschränkt oder komplett verhindert wird. Allerdings wird darauf hingewiesen, dass die Nutzung und insbesondere der Nutzungskomfort ohne Cookies eingeschränkt werden.
-			Sie können viele Online-Anzeigen-Cookies von Unternehmen über die US-amerikanische Seite <a href="http://www.aboutads.info/choices/">www.aboutads.info/choices</a> oder die EU-Seite <a href="http://www.youronlinechoices.com/uk/your-ad-choices/">www.youronlinechoices.com/uk/your-ad-choices</a> verwalten.
-			<br><br>
-			Registrierfunktion:<br>
-			Das Deutsche Archäologische Institut nutzt die personenbezogenen Daten der Nutzer ausschließlich, um der/dem Nutzer/in die Inanspruchnahme des Portals „iDAI.publications“ zu ermöglichen. In keinem Fall wird das Deutsche Archäologische Institut personenbezogene Daten von Nutzern Dritten zu Werbe- oder Marketingzwecken zur Verfügung stellen und/oder unbefugt zu anderen Zwecken übermitteln.
-			<br>
-			Die Nutzer können über angebots- oder registrierungsrelevante Informationen, wie Änderungen des Angebotsumfangs oder technische Umstände per E-Mail informiert werden. Die erhobenen Daten sind aus der Eingabemaske im Rahmen der Registrierung ersichtlich. Dazu gehören Vorname, Familienname, E-Mail-Adresse. Autorinnen und Autoren, die auf „iDAI.publications“ Beiträge zur Veröffentlichung beim Deutschen Archäologischen Institut einreichen, können, falls von ihnen gewünscht, Informationen hinterlegen, die das notwendige wissenschaftliche Peer-review-Verfahren erleichtern können, zum Beispiel Anschrift, Fax- bzw. Telefonnummer oder Angaben zu ihrem akademischen Lebenslauf; diese Angaben sind aber optional.
-			<br><br>
-			Widerruf, Änderungen, Berichtigungen und Aktualisierungen:<br>
-			Der Nutzer hat das Recht, auf Antrag unentgeltlich Auskunft zu erhalten über die personenbezogenen Daten, die über ihn gespeichert wurden. Zusätzlich hat der Nutzer das Recht auf Berichtigung unrichtiger Daten, Sperrung und Löschung seiner personenbezogenen Daten, soweit dem keine gesetzliche Aufbewahrungspflicht entgegensteht.
-			<br>
-			Nutzer wenden sich dazu an die Online-Redaktion des Deutschen Archäologischen Instituts (<a href="mailto:idai.publications@dainst.de">idai.publications@dainst.de</a>) oder an die/den Datenschutzbeauftragte(n) des Deutschen Archäologischen Instituts, Podbielskiallee 69–71, 14195 Berlin, E-Mail: <a href="mailto:datenschutz@dainst.de">datenschutz@dainst.de</a>.
-			<br><br>
-			Datenschutz-Muster von Rechtsanwalt Thomas Schwenke (<a href="http://rechtsanwalt-schwenke.de/smmr-buch/datenschutz-muster-generator-fuer-webseiten-blogs-und-social-media/">I LAW it</a>)
-			vom Deutschen Archäologischen Institut angepasst.
-		]]>
-	</message>
 
 </locale>

@@ -9,10 +9,9 @@
 
 	/* dainst */
 
-	// spotlights (couldnt find the original implementationj so fuck it */
+	// spotlights (couldnt find the original implementation so fuck it */
 
 	function changeHighlight(e) {
-
 		var spotlightNumber = jQuery(e.currentTarget).data('spotlight');
 		console.log(spotlightNumber);
 		jQuery(".cmp_spotlights ul.spotlights li.current").toggleClass("current");
@@ -21,14 +20,46 @@
 		jQuery(e.currentTarget).parent("li").toggleClass("current");
 
 	}
-
-
 	jQuery("a[data-spotlight]").mouseenter(changeHighlight).click(changeHighlight);
 
 
-	//data-spotlight="1"
+
+	// (register fuck) da-clickedy-clack
+	function showTermsModal(e) {
+		e.preventDefault();
+		showModal();
+	}
+	jQuery('#register button[type="submit"]').click(showTermsModal);
+
+	function confirmTermsModal(e) {
+		jQuery('#register').submit()
+	}
+	jQuery('#modal.terms #modal-dialog-ok').click(confirmTermsModal);
 
 
+	// modal functioniality wich could be reused fpr some otehr modal
+	function showModal(e) {
+		jQuery('#modal').toggle(true);
+	}
+	function hideModal(e) {
+		jQuery('#modal').toggle(false);
+	}
+	function escapeModal(e) {
+		if (jQuery('#modal').hasClass("escapeable")) {
+			hideModal(e);
+		}
+	}
+	jQuery('#modal-dialog-esc').click(hideModal);
+	jQuery('body').keypress(function(e) {
+		if (e.key == "Escape") {
+			escapeModal();
+		}
+	});
+	jQuery('#modal').click(escapeModal);
+	jQuery('#modal .dialog').click(function(e) {
+		e.stopImmediatePropagation();
+		e.stopPropagation();
+	});
 
 
 

@@ -62,30 +62,30 @@
 		}
 	}
 
+  	a.login {
+	  	&:extend(.cmp_button_light);
+	}
+
 	// Styles for form error list, which is still tied to a template shared by
 	// the backend
 	#formErrors {
-		margin: @double 0;
-		padding: @base;
-		background: @no;
-		color: #fff;
 
+	  	&:extend(.bs_alert);
 		.pkp_form_error {
-			padding: ((@double - @line-sml) / 2) 0;
-			font-size: @font-sml;
-			font-weight: bold;
-			line-height: @line-sml;
-
+		  background: none;
+		  padding: 0;
+		  border: none
 		}
 
 		.pkp_form_error_list {
+		  	color: #a94442;
 			margin: 0;
-			padding-left: @double;
+			padding-left: @triple;
 			font-size: @font-sml;
 			line-height: @line-sml;
 
 			a {
-				color: #fff;
+				color: #a94442;
 			}
 		}
 	}

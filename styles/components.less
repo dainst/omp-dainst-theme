@@ -8,6 +8,20 @@
  * @brief Reusable components
  */
 
+.bs_alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+
+
+
+
 // Button
 .cmp_button {
 	display: inline-block;
@@ -30,6 +44,15 @@
 		text-shadow: none;
 	}
 }
+
+.cmp_button_light {
+  &:extend(.cmp_button);
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+
 
 // Add an icon to the button
 .cmp_button_icon( @icon ) {
@@ -106,17 +129,19 @@
 	}
 
 	legend {
-		margin-bottom: @base;
+		margin-bottom: @triple;
 		font-size: @font-bump;
-		font-weight: @bold;
+		font-weight: @normal;
 		line-height: @double;
+	  	color: @text;
+	  	border: none;
 	}
 
 	.fields {
 
 		> div {
 			position: relative;
-			padding-bottom: @triple; // Contain errors
+			padding-bottom: @base; // Contain errors
 
 			// Nest so we don't grab .error class attached to li
 			.error {
@@ -136,19 +161,33 @@
 	}
 
 	label {
-		display: block;
-		cursor: pointer;
+	  	display: inline-block;
+	  	font-size: @font-base;
+	  	min-width: 10em;
+	  	color: @text;
+
 	}
 
 	.label {
-		display: block;
-		font-size: @font-sml;
-		font-style: italic;
+		display: inline-block;
+		font-size: @font-base;
+		min-width: 10em;
+	  	color: @text;
+	  	text-align: left;
+	  	padding-left: 0;
+	  	font-weight: @normal;
 
 		.required {
 			color: @no;
 		}
 	}
+  	/* stand:
+  	- labels müssen korrekt formatiert wrden in register page etc.
+  	- logout geht nicht rictig
+  	- msg in register page muss korrekt formatiert werden
+  	- holla die waldfee
+  	- register blub text einbauen?!
+  	 */
 
 	input[type="text"],
 	input[type="email"],
@@ -173,13 +212,7 @@
 	}
 
 	.pkp_form_error {
-		margin-bottom: @base;
-		border-radius: @radius;
-		padding: 0 0.5em;
-		font-weight: @bold;
-		font-size: @font-sml;
-		background: @no;
-		color: #fff;
+	  &:extend(.bs_alert);
 	}
 
 	label > input[type="checkbox"],
@@ -193,12 +226,13 @@
 		button {
 			&:extend(.cmp_button);
 		}
-
+		/*
 		a {
 			font-size: @font-sml;
 			line-height: @triple;
 			margin-left: 1em;
 		}
+		*/
 	}
 
 	@media(min-width: @screen-phone) {
@@ -209,7 +243,7 @@
 		input[type="url"],
 		input[type="phone"],
 		select {
-			max-width: 20em;
+			width: 20em;
 		}
 	}
 
