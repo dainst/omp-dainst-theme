@@ -71,7 +71,7 @@
 	.entry_details {
 
 		.item {
-			padding: @double @base;
+			padding: @double 0;
 			border-bottom: @bg-border;
 		}
 
@@ -236,23 +236,14 @@
 		}
 	}
 
-	@media(min-width: @screen-phone) {
 
-		.entry_details {
-
-			.item {
-				padding-left: @double;
-				padding-right: @double;
-			}
-		}
-	}
 
 	@media(min-width: @screen-tablet) {
 
 
 		.main_entry {
 			float: left;
-			width: @screen-tablet-container - @sidebar-width;
+			width: @screen-tablet-container - @sidebar-width - (2* @base);
 			margin: 0;
 			padding: @base;
 		}
@@ -264,7 +255,7 @@
 		  	margin-top: -40px;
 
 			.item {
-				padding: @base;
+				padding: @double @base;
 			}
 		}
 	}
@@ -273,7 +264,7 @@
 
 		.main_entry {
 			padding: @base 0;
-			width: @screen-desktop-container - (@sidebar-width * 2);
+			width: @screen-desktop-container - (@sidebar-width * 2)  - (2* @base);
 		}
 
 		.entry_details {
@@ -288,7 +279,7 @@
 	@media(min-width: @screen-lg-desktop) {
 
 		.main_entry {
-			width: @screen-lg-desktop-container - (@sidebar-width * 2) - (@triple * 2);
+			width: @screen-lg-desktop-container - (@sidebar-width * 2) - (@triple * 2)  - (2* @base);
 		}
 
 	  	.entry_details {

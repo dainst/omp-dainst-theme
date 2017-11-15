@@ -5,6 +5,7 @@
 	<body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 		{idai_navbar}{/idai_navbar}
 		<div class="row toprow">
+			{assign var="isGalleyView" value="true"}
 			<div class="col-md-6 toprow-left">{include file="frontend/components/breadcrumbs_catalog.tpl"}</div>
 			<div class="col-md-6 toprow-right"></div>
 

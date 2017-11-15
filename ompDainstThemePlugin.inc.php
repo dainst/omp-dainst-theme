@@ -17,25 +17,6 @@ import('lib.pkp.classes.plugins.ThemePlugin');
 
 class ompDainstThemePlugin extends ThemePlugin {
 
-	/*
-	 * stand:
-	 * - viewer ist drin
-	 * - breadcrump auch auf buchseite?
-	 *
-	 * - zenonlink..! // pubids -> verschieben! kann man immer noch machen
-	 *
-	 */
-
-
-	function register($category, $path) {
-		if (parent::register($category, $path)) {
-			if ($this->getEnabled()) {
-				HookRegistry::register('CatalogBookHandler::view', array($this, 'viewerCallback'), HOOK_SEQUENCE_LATE);
-			}
-		}
-	}
-	//*/
-
 
 	/*
 	 * @copydoc ThemePlugin::isActive()
@@ -53,7 +34,9 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 */
 	public function init() {
 
-
+		if ($this->getEnabled()) {
+			HookRegistry::register('CatalogBookHandler::view', array($this, 'viewerCallback'), HOOK_SEQUENCE_LATE);
+		}
 
 		// Register theme options
 		/*
@@ -103,6 +86,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$templateMgr->register_function("idai_footer_scripts", array($this, "getFooterScripts"));
 		$templateMgr->register_function("idai_viewer", array($this, "getViewer"));
 		$templateMgr->register_function("idai_modal", array($this, "getModal"));
+		$templateMgr->register_function("idai_series", array($this, "getSeriesOfBook"));
 
 		require_once($this->getFilePath() . '/lib/idai-components-php/idai-components.php');
 
@@ -117,11 +101,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->_idaic->settings["scripts"]["navbar"]["include"] = "footer";
 		$this->_idaic->settings["styles"]["idai-components.min"]["include"] = true;
 
-
-
 		$request = Application::getRequest();
-
-
 
 		// Load jQuery from a CDN or, if CDNs are disabled, from a local copy.
 		$min = Config::getVar('general', 'enable_minified') ? '.min' : '';
@@ -147,9 +127,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));
 
-
 		$this->addStyle('dainst', "styles/dainst.css");
-
 
 	}
 
@@ -497,18 +475,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 
 			$templateMgr = TemplateManager::getManager($this->getRequest());
 
-			//$templateMgr->assign("parent", $publishedMonograph->getSeriesTitle());
-
-			$seriesId = $publishedMonograph->getSeriesId();
-			if ($seriesId) {
-				$seriesDao = DAORegistry::getDAO("SeriesDAO");
-				$series = $seriesDao->getById($seriesId);
-				$templateMgr->assign('parent', $series);
-				$templateMgr->assign('type', "series");
-			}
-
-			$templateMgr->assign("currentTitle", $publishedMonograph->getFirstAuthor() . ': ' . $publishedMonograph->getLocalizedTitle());
-
 			$this->_idaic->settings["styles"]["small_footer"] = array(
 				"include" => true,
 				"src"	=> $this->theUrl . '/' . $this->pluginPath . '/styles/small_footer.css'
@@ -519,6 +485,39 @@ class ompDainstThemePlugin extends ThemePlugin {
 		}
 
 		return false;
+	}
+
+	/**
+	 * smarty function: idai_series
+	 *
+	 * setes the $parent and $type smarty vars in book page wo display series in breadcrumptrail
+	 *
+	 * @param $params
+	 * @param $smarty
+	 */
+	function getSeriesOfBook($params, &$smarty) {
+		// are we on a book page?
+		if (isset($params['monograph']) and (get_class($params['monograph']) == 'PublishedMonograph')) {
+			$publishedMonograph = $params['monograph'];
+			$seriesId = $publishedMonograph->getSeriesId();
+			if ($seriesId) { // then add a series if possible
+				$seriesDao = DAORegistry::getDAO("SeriesDAO");
+				$series = $seriesDao->getById($seriesId);
+				$smarty->assign('parent', $series);
+				$smarty->assign('type', "series");
+			}
+
+			// title with author
+			$smarty->assign("currentTitle", $publishedMonograph->getFirstAuthor() . ': ' . $publishedMonograph->getLocalizedTitle());
+
+			// link in galley view
+			if ($smarty->get_template_vars('isGalleyView') == "true") {
+				$smarty->assign("currentTitleUrl", $smarty->smartyUrl(array("page" => "catalog", "op" => "book", "path" => $publishedMonograph->getId()),$smarty));
+			}
+
+
+		}
+
 	}
 
 	/**

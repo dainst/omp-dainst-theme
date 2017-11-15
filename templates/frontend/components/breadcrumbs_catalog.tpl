@@ -35,6 +35,7 @@
 			</a>
 			<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
 		</li>
+		{if !$parent}{idai_series monograph=$publishedMonograph}{/if}
 		{if $parent}
 			<li>
 				<a href="{url op=$type path=$parent->getPath()}">
@@ -47,7 +48,9 @@
 			{if $currentTitleKey}
 				{translate key=$currentTitleKey}
 			{else}
-				{$currentTitle|escape}
+				{if $currentTitleUrl}<a href="{$currentTitleUrl}">{/if}
+					{$currentTitle|escape}
+				{if $currentTitleUrl}</a>{/if}
 			{/if}
 		</li>
 	</ol>
