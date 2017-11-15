@@ -459,7 +459,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		if ($this->getServerType() != "production") {
 			return '<!-- no piwik since no production -->';
 		}
-		$journalPath = ($this->_journal) ? $this->_journal->getPath() : '';
+		$journalPath = "books";
 		ob_start();
 		include($this->getFilePath() . '/piwik.inc.php');
 		return ob_get_clean();
