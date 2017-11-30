@@ -16,3 +16,15 @@
 #navbar-item-aaa-warning.dev-server-warning {
 	background: red
 }
+
+#article-meta {
+	display: none;
+	position: absolute;
+	right: 1.2em;
+	box-shadow: 0 6px 12px rgba(0,0,0,.176) !important;
+	z-index: 10;
+}
+
+#article-meta a {
+	margin-left: 1em
+}

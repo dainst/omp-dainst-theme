@@ -7,7 +7,24 @@
 		<div class="row toprow">
 			{assign var="isGalleyView" value="true"}
 			<div class="col-md-6 toprow-left">{include file="frontend/components/breadcrumbs_catalog.tpl"}</div>
-			<div class="col-md-6 toprow-right"></div>
+			<div class="col-md-6 toprow-right">
+				<a href="#" id="article-meta-toggler">{translate key="plugins.themes.dainst.additionalInfo"}<b class="caret"></b></a>
+				<div class="panel panel-default" id="article-meta">
+					<div class="panel-heading">{translate key="plugins.themes.dainst.additionalInfo"}</div>
+					<div class="panel-body">
+						{idai_pubid_plugins}
+						{foreach from=$pubIdPlugins item=pubIdPlugin}
+							{assign var=pubId value=$publishedMonograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+							{if $pubId}
+								{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+								<div class="item doi">
+									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
+								</div>
+							{/if}
+						{/foreach}
+					</div>
+				</div>
+			</div>
 
 		</div>
 

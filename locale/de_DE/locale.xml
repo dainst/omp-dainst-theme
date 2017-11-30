@@ -19,6 +19,7 @@
 	<message key="plugins.themes.dainst.imprint">Impressum</message>
 
 	<message key="plugins.themes.dainst.reportBugsTo">Fehlermeldungen bitte an</message>
+	<message key="plugins.themes.dainst.additionalInfo">Zusatzinformationen (Zenon/URN)</message>
 
 
 </locale>

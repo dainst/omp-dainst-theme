@@ -38,28 +38,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 			HookRegistry::register('CatalogBookHandler::view', array($this, 'viewerCallback'), HOOK_SEQUENCE_LATE);
 		}
 
-		// Register theme options
-		/*
-		$this->addOption('typography', 'radio', array(
-			'label' => 'plugins.themes.ompDainstTheme.option.typography.label',
-			'description' => 'plugins.themes.ompDainstTheme.option.typography.description',
-			'options' => array(
-				'notoSans' => 'plugins.themes.ompDainstTheme.option.typography.notoSans',
-				'notoSerif' => 'plugins.themes.ompDainstTheme.option.typography.notoSerif',
-				'notoSerif_notoSans' => 'plugins.themes.ompDainstTheme.option.typography.notoSerif_notoSans',
-				'notoSans_notoSerif' => 'plugins.themes.ompDainstTheme.option.typography.notoSans_notoSerif',
-				'lato' => 'plugins.themes.ompDainstTheme.option.typography.lato',
-				'lora' => 'plugins.themes.ompDainstTheme.option.typography.lora',
-				'lora_openSans' => 'plugins.themes.ompDainstTheme.option.typography.lora_openSans',
-			)
-		));
-
-		$this->addOption('baseColour', 'colour', array(
-			'label' => 'plugins.themes.ompDainstTheme.option.colour.label',
-			'description' => 'plugins.themes.ompDainstTheme.option.colour.description',
-			'default' => '#1E6292',
-		));
-		*/
 
 		// cache cleansing
 		$templateMgr = TemplateManager::getManager();
@@ -69,7 +47,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 			$templateMgr->clear_all_cache();
 			$templateMgr->clear_compiled_tpl();
 		}
-
 
 		// Load primary stylesheet
 		$this->addStyle('stylesheet', 'styles/index.less');
@@ -87,6 +64,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$templateMgr->register_function("idai_viewer", array($this, "getViewer"));
 		$templateMgr->register_function("idai_modal", array($this, "getModal"));
 		$templateMgr->register_function("idai_series", array($this, "getSeriesOfBook"));
+		$templateMgr->register_function("idai_pubid_plugins", array($this, "getPubidPlugins"));
 
 		require_once($this->getFilePath() . '/lib/idai-components-php/idai-components.php');
 
@@ -514,10 +492,13 @@ class ompDainstThemePlugin extends ThemePlugin {
 			if ($smarty->get_template_vars('isGalleyView') == "true") {
 				$smarty->assign("currentTitleUrl", $smarty->smartyUrl(array("page" => "catalog", "op" => "book", "path" => $publishedMonograph->getId()),$smarty));
 			}
-
-
 		}
+	}
 
+
+	function getPubidPlugins($params, &$smarty) {
+		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
+		$smarty->assign('pubIdPlugins', $pubIdPlugins);
 	}
 
 	/**

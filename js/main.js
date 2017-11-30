@@ -22,6 +22,52 @@
 	}
 	jQuery("a[data-spotlight]").mouseenter(changeHighlight).click(changeHighlight);
 
+	/* metabox */
+
+	var openMeta = function(event) {
+		jQuery('#article-meta').toggle(true);
+		event.stopImmediatePropagation();
+		closeMetaDelayStop();
+	}
+
+	var closeMeta = function(event) {
+		jQuery('#article-meta').toggle(false);
+		if (event) {
+			event.stopImmediatePropagation();
+		}
+		closeMetaDelayStop();
+	}
+
+	var toggleMeta = function(event) {
+		jQuery('#article-meta').toggle();
+		event.stopImmediatePropagation();
+		closingMeta = false;
+		closeMetaDelayStop();
+	}
+
+	var closingMeta = false;
+	var closingMetaTimeout = false;
+
+	var closeMetaDelay = function() {
+		closingMeta = true;
+		closingMetaTimeout = setTimeout(closeMeta, 1500);
+	}
+
+	var closeMetaDelayStop = function() {
+		if (closingMeta) {
+			closingMeta = false;
+			clearTimeout(closingMetaTimeout);
+		}
+	}
+
+
+	jQuery('#article-meta-toggler').mouseenter(openMeta);
+	jQuery('#article-meta-toggler').click(toggleMeta);
+	jQuery('#article-meta').mouseover(openMeta);
+	jQuery('#article-meta-toggler').mouseleave(closeMetaDelay);
+	jQuery('#article-meta').mouseleave(closeMeta);
+
+
 
 
 	// (register fuck) da-clickedy-clack

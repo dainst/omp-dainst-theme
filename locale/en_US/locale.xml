@@ -20,6 +20,8 @@
 	<message key="plugins.themes.dainst.termsOfUse">Terms of Use</message>
 
 	<message key="plugins.themes.dainst.reportBugsTo">Report bugs to</message>
+	<message key="plugins.themes.dainst.additionalInfo">Additional Information</message>
+
 
 
 </locale>
