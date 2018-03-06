@@ -254,24 +254,30 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// user
 		$this->_idaic->settings["user"]["name"] 					= (Validation::isLoggedIn()) ? $session->userName : '';
 
-		$this->_idaic->settings['buttons']['login']['href'] 		= $smarty->smartyUrl(array("page" => "login", "op" => "signIn"),$smarty);
+		$this->_idaic->settings['buttons']['login']['href'] 		= $smarty->smartyUrl(array("page" => "login", "op" => "signIn"), $smarty);
 		$this->_idaic->settings['buttons']['login']['label'] 		= AppLocale::translate("user.login");
 		unset($this->_idaic->settings['buttons']['login']['glyphicon']);
-		$this->_idaic->settings['buttons']['register']['href'] 		= $smarty->smartyUrl(array("page" => "user", "op" => "register"),$smarty);
+
+		$this->_idaic->settings['buttons']['register']['href'] 		= $smarty->smartyUrl(array("page" => "user", "op" => "register"), $smarty);
 		$this->_idaic->settings['buttons']['register']['label'] 	= AppLocale::translate("user.register");
 
 		$this->_idaic->settings['buttons']['usermenu']["glyphicon"]	= 'user';
 
 		// user menu
+		$this->_idaic->settings['buttons']['usermenu']["submenu"] = array();
 		$this->_idaic->settings['buttons']['usermenu']["submenu"]["a"] = array(
+			"label"	=>	AppLocale::translate("user.logOut"),
+			"href"	=>	$smarty->smartyUrl(array("page" => "login", "op" => "signOut"), $smarty)
+		);
+		$this->_idaic->settings['buttons']['usermenu']["submenu"]["b"] = array(
 			"label"	=>	AppLocale::translate("navigation.dashboard") . "<span class='badge pull-right'>" . $session->notifications . "</span>",
 			"href"	=>	$smarty->smartyUrl(array("page" => "submissions", "context" => $context->getPath()), $smarty)
 		);
-		$this->_idaic->settings['buttons']['usermenu']["submenu"]["b"] = array(
+		$this->_idaic->settings['buttons']['usermenu']["submenu"]["c"] = array(
 			"label"	=>	AppLocale::translate("user.profile"),
 			"href"	=>	$smarty->smartyUrl(array("page" => "user", "op" => "profile", "context" => $context->getPath()), $smarty)
 		);
-		$this->_idaic->settings['buttons']['usermenu']["submenu"]["c"] = array(
+		$this->_idaic->settings['buttons']['usermenu']["submenu"]["d"] = array(
 			"label"	=>	AppLocale::translate("navigation.admin"),
 			"href"	=>	$smarty->smartyUrl(array("page" => "admin", "context" => $context->getPath()), $smarty)
 		);
