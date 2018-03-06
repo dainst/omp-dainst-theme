@@ -17,7 +17,7 @@
 <nav class="cmp_breadcrumbs" role="navigation" aria-label="{translate key="navigation.breadcrumbLabel"}">
 	<ol>
 		<li>
-			iDai.publications
+			iDAI.publications
 			<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
 		</li>
 		<li>
