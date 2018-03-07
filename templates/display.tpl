@@ -28,6 +28,13 @@
 									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
 								</div>
 							{/if}
+							{assign var=pubId value=$submissionFile->getStoredPubId($pubIdPlugin->getPubIdType())}
+							{if $pubId}
+								{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+								<div class="item doi">
+									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
+								</div>
+							{/if}
 						{/foreach}
 					</div>
 				</div>
