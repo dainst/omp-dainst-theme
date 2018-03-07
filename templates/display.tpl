@@ -14,21 +14,22 @@
 					<div class="panel-body">
 						{idai_pubid_plugins}
 						{foreach from=$pubIdPlugins item=pubIdPlugin}
-							{assign var=pubId value=$publishedMonograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+							{*assign var=pubId value=$publishedMonograph->getPubId($pubIdPlugin->getPubIdType())*}
+							{assign var=pubId value=$pubIdPlugin->getPubId($publishedMonograph)}
 							{if $pubId}
 								{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 								<div class="item doi">
 									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
 								</div>
 							{/if}
-							{assign var=pubId value=$publicationFormat->getStoredPubId($pubIdPlugin->getPubIdType())}
+							{assign var=pubId value=$pubIdPlugin->getPubId($publicationFormat)}
 							{if $pubId}
 								{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 								<div class="item doi">
 									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
 								</div>
 							{/if}
-							{assign var=pubId value=$submissionFile->getStoredPubId($pubIdPlugin->getPubIdType())}
+							{assign var=pubId value=$pubIdPlugin->getPubId($submissionFile)}
 							{if $pubId}
 								{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 								<div class="item doi">
