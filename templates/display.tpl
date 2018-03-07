@@ -21,13 +21,19 @@
 									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
 								</div>
 							{/if}
+							{assign var=pubId value=$publicationFormat->getStoredPubId($pubIdPlugin->getPubIdType())}
+							{if $pubId}
+								{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+								<div class="item doi">
+									{$pubIdPlugin->getDisplayName()}<a href="{$doiUrl}">{$doiUrl}</a>
+								</div>
+							{/if}
 						{/foreach}
 					</div>
 				</div>
 			</div>
 
 		</div>
-
 		<div id="main">
 			{idai_viewer file=$downloadUrl}
 		</div>
