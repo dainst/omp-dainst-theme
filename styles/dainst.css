@@ -28,3 +28,7 @@
 #article-meta a {
 	margin-left: 1em
 }
+
+.pkp_site_name .is_text span {
+	line-height: 45px;
+}
