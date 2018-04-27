@@ -523,7 +523,10 @@ class ompDainstThemePlugin extends ThemePlugin {
 	function getViewer($params, &$smarty) {
 		$viewerSrc = Config::getVar('dainst', 'viewerUrl');
 		if ($viewerSrc) {
-			$url = "$viewerSrc?file={$params['file']}" . ((Config::getVar('dainst', 'viewerAppendId') or isset($_GET['ann'])) ? "&pubid={$params['article']}" : '');
+			$url = "$viewerSrc?";
+			$url .= Config::getVar('dainst', 'restrictAnnotationTypes') ? 'annotation_types=' . Config::getVar('dainst', 'restrictAnnotationTypes') . '&' : '';
+			$url .= "file={$params['file']}";
+			$url .= (Config::getVar('dainst', 'viewerAppendId') or isset($_GET['ann'])) ? "&pubid={$params['article']}" : '';
 		} else {
 			$url = $params['file'];
 		}
