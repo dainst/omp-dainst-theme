@@ -21,7 +21,7 @@
 			<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
 		</li>
 		<li>
-			<a href="{url page="index" router=$smarty.const.ROUTE_PAGE}">
+			<a href="{url press="index" router=$smarty.const.ROUTE_PAGE}">
 				books
 			</a>
 			<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
