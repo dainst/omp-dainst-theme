@@ -102,6 +102,9 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// Load custom JavaScript for this theme
 		$this->addScript('default', 'js/main.js');
 
+		// idai cookie notice bullshit
+		$this->addScript('idai-cookie-notice', 'lib/idai-cookie-notice/idai-cookie-notice.js');
+
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));
 
