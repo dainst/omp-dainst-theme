@@ -6,8 +6,8 @@
 		{idai_navbar}{/idai_navbar}
 		<div class="row toprow">
 			{assign var="isGalleyView" value="true"}
-			<div class="col-md-6 toprow-left">{include file="frontend/components/breadcrumbs_catalog.tpl"}</div>
-			<div class="col-md-6 toprow-right">
+			<div class="col-md-9 toprow-left">{include file="frontend/components/breadcrumbs_catalog.tpl"}</div>
+			<div class="col-md-3 toprow-right">
 				<a href="#" id="article-meta-toggler">{translate key="plugins.themes.dainst.additionalInfo"}<b class="caret"></b></a>
 				<div class="panel panel-default" id="article-meta">
 					<div class="panel-heading">{translate key="plugins.themes.dainst.additionalInfo"}</div>
