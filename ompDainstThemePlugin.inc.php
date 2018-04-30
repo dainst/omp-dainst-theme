@@ -649,7 +649,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 
         // text (first paragraph only)
         $text = $series->getLocalizedData('description');
-        preg_match("#<p>(.*)<\/p>#", $text, $matches);
+        preg_match_all("#<p>(.*)<\/p>#", $text, $matches);
         if (count($matches) > 1) {
             $text = $matches[1];
         }

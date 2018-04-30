@@ -34,5 +34,9 @@
 }
 
 .cmp_series_list {
-	width:100%
+	width:100%;
+}
+
+.cmp_series_list .row {
+	margin-bottom: 0.5em;
 }
