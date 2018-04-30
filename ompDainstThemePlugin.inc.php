@@ -612,11 +612,8 @@ class ompDainstThemePlugin extends ThemePlugin {
     function getSeriesInfo($params, &$smarty) {
         $series = $params['series'];
         $info = array();
-
-        // count
         $publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
         $monographs = $publishedMonographDao->getByPressId($series->getId());
-        $info['count'] = $monographs->getCount();
 
         // image
         $info['image'] = null;
@@ -629,6 +626,7 @@ class ompDainstThemePlugin extends ThemePlugin {
                     "id" => $series->getId(),
                     "router" => ROUTE_PAGE
                 ), $smarty);
+            echo "AGGRESSION!!!!!";
         } else if ($monographs->getCount() > 0) {
             while ($monograph = $monographs->next()) {
                 //echo "<pre>", print_r($monograph->getCoverImage(),1), "</pre>";
@@ -643,6 +641,7 @@ class ompDainstThemePlugin extends ThemePlugin {
                     break;
                 }
             }
+            echo "HASS!!!!";
         }
 
         // text (first paragraph only)
@@ -652,6 +651,9 @@ class ompDainstThemePlugin extends ThemePlugin {
             $text = $matches[1];
         }
         $info['text'] = $text;
+
+        // count
+        $info['count'] = count($monographs->toArray()); // to array transforms the thing itself!
 
         $info['title'] = $series->getLocalizedTitle();
 

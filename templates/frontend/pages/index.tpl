@@ -103,7 +103,7 @@
                     </div>
                 </div>
             {/if}
-            <pre>{$seriesInfo|@print_r}</pre>
+            
         {/iterate}
     </div>
 
