@@ -653,6 +653,9 @@ class ompDainstThemePlugin extends ThemePlugin {
         if (isset($matches[0]) and isset($matches[0][0])) {
             $text = $matches[0][0];
         }
+        if (strlen($text) > 300) {
+            $text = substr($text, 0, 299) . ' [...]';
+        }
         //echo "<pre>", print_r($matches,1), "</pre>";
         $info['text'] = $text;
 
