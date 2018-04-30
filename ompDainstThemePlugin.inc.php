@@ -627,7 +627,6 @@ class ompDainstThemePlugin extends ThemePlugin {
                 ), $smarty);
         } else if ($monographs->getCount() > 0) {
             while ($monograph = $monographs->next()) {
-                //echo "<pre>", print_r($monograph->getCoverImage(),1), "</pre>";
                 if ($monograph->getCoverImage()) {
                     $info['image'] = $smarty->smartyUrl(array(
                         "component" => "submission.CoverHandler",
@@ -650,7 +649,9 @@ class ompDainstThemePlugin extends ThemePlugin {
         $info['text'] = $text;
 
         // count
-        $info['count'] = count($monographs->toArray()); // to array transforms the thing itself!
+        $mar = $monographs->toArray();
+        $info['count'] = $monographs->getCount();
+        echo "<pre>", $series->getLocalizedTitle(), ": ", count($mar) , "|vs|", $monographs->getCount(), "</pre>";
 
         $info['title'] = $series->getLocalizedTitle();
 
