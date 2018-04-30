@@ -617,8 +617,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 
         // image
         $info['image'] = null;
-        $image = $series->getImage();
-        if ($image) {
+        if ($series->getImage()) {
             $info['image'] = $smarty->smartyUrl(array(
                     "page" => "catalog",
                     "op" => "thumbnail",
@@ -626,7 +625,6 @@ class ompDainstThemePlugin extends ThemePlugin {
                     "id" => $series->getId(),
                     "router" => ROUTE_PAGE
                 ), $smarty);
-            echo "AGGRESSION!!!!!";
         } else if ($monographs->getCount() > 0) {
             while ($monograph = $monographs->next()) {
                 //echo "<pre>", print_r($monograph->getCoverImage(),1), "</pre>";
@@ -641,7 +639,6 @@ class ompDainstThemePlugin extends ThemePlugin {
                     break;
                 }
             }
-            echo "HASS!!!!";
         }
 
         // text (first paragraph only)
