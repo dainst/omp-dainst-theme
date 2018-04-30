@@ -21,5 +21,7 @@
 	<message key="plugins.themes.dainst.reportBugsTo">Fehlermeldungen bitte an</message>
 	<message key="plugins.themes.dainst.additionalInfo">Zusatzinformationen (Zenon/URN)</message>
 
+	<message key="plugins.themes.dainst.series">Reihen</message>
+
 
 </locale>

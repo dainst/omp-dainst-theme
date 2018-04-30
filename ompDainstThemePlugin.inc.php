@@ -108,7 +108,20 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));
 
+		// add style hacks
 		$this->addStyle('dainst', "styles/dainst.css");
+
+		// show series on main page
+        //$seriesCountDao = new SeriesCountDAO();
+        $press = $request->getPress();
+        $seriesDao = DAORegistry::getDAO('SeriesDAO');
+        $series = $seriesDao->getByPressId($press->getId());
+        //$seriesCount = $seriesCountDao->getSeriesCount();
+        $templateMgr->assign('browseSeriesFactory', $series);
+        //$templateMgr->assign('seriesCount', $seriesCount);
+        $templateMgr->register_function('idai_series_info', array($this, "getSeriesInfo"));
+
+
 
 	}
 
@@ -596,6 +609,45 @@ class ompDainstThemePlugin extends ThemePlugin {
 	}
 
 
+    function getSeriesInfo($params, &$smarty) {
+        $series = $params['series'];
+        $info = array();
+
+        // count
+        $publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
+        $monographs = $publishedMonographDao->getByPressId($series->getId());
+        $info['count'] = $monographs->getCount();
+
+        // image
+        $info['image'] = null;
+        $image = $series->getImage();
+        if ($image) {
+            $info['image'] = $smarty->smartyUrl(array(
+                    "page" => "catalog",
+                    "op" => "thumbnail",
+                    "type" => "series",
+                    "id" => $series->getId(),
+                    "router" => ROUTE_PAGE
+                ), $smarty);
+        } else if ($monographs->getCount() > 0) {
+            while ($monograph = $monographs->next()) {
+                //echo "<pre>", print_r($monograph->getCoverImage(),1), "</pre>";
+                if ($monograph->getCoverImage()) {
+                    $info['image'] = $smarty->smartyUrl(array(
+                        "component" => "submission.CoverHandler",
+                        "op" => "thumbnail",
+                        "type" => "submission",
+                        "submissionId" => $monograph->getId(),
+                        router => ROUTE_COMPONENT
+                    ), $smarty);
+                    break;
+                }
+            }
+        }
+
+
+        $smarty->assign('seriesInfo', $info);
+    }
 
 
 }
