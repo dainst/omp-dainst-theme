@@ -19,7 +19,7 @@
  *}
 {include file="frontend/components/header.tpl"}
 
-<a class="page page_homepage">
+<div class="page page_homepage">
 
     {* Homepage Image *}
     {if $homepageImage}
