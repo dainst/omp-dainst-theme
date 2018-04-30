@@ -612,8 +612,15 @@ class ompDainstThemePlugin extends ThemePlugin {
     function getSeriesInfo($params, &$smarty) {
         $series = $params['series'];
         $info = array();
+        $request = Application::getRequest();
+        $press = $request->getPress();
         $publishedMonographDao = DAORegistry::getDAO('PublishedMonographDAO');
-        $monographs = $publishedMonographDao->getByPressId($series->getId());
+        $monographs = $publishedMonographDao->getBySeriesId($series->getId(), $press->getId());
+        //echo "<pre>", print_r($monographs, 1), "</pre>";
+
+        // count
+        $info['count'] = $monographs->getCount();
+        //echo "<pre>", $series->getLocalizedTitle(), ": ", count($mar) , "|vs|", $monographs->getCount(), "</pre>";
 
         // image
         $info['image'] = null;
@@ -648,10 +655,7 @@ class ompDainstThemePlugin extends ThemePlugin {
         }
         $info['text'] = $text;
 
-        // count
-        $mar = $monographs->toArray();
-        $info['count'] = $monographs->getCount();
-        echo "<pre>", $series->getLocalizedTitle(), ": ", count($mar) , "|vs|", $monographs->getCount(), "</pre>";
+
 
         $info['title'] = $series->getLocalizedTitle();
 
