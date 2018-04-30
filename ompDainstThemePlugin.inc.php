@@ -651,10 +651,9 @@ class ompDainstThemePlugin extends ThemePlugin {
         if (count($matches) > 1) {
             $text = $matches[1];
         }
-
-
         $info['text'] = $text;
 
+        $info['title'] = $series->getLocalizedTitle();
 
         $smarty->assign('seriesInfo', $info);
     }
