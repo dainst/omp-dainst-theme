@@ -653,7 +653,7 @@ class ompDainstThemePlugin extends ThemePlugin {
         if (isset($matches[0]) and isset($matches[0][0])) {
             $text = $matches[0][0];
         }
-        echo "<pre>", print_r($matches,1), "</pre>";
+        //echo "<pre>", print_r($matches,1), "</pre>";
         $info['text'] = $text;
 
 
