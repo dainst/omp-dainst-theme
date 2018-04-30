@@ -650,9 +650,10 @@ class ompDainstThemePlugin extends ThemePlugin {
         // text (first paragraph only)
         $text = $series->getLocalizedData('description');
         preg_match_all("#<p>(.*)<\/p>#", $text, $matches);
-        if (count($matches) > 1) {
-            $text = $matches[1];
+        if (isset($matches[0]) and isset($matches[0][0])) {
+            $text = $matches[0][0];
         }
+        echo "<pre>", print_r($matches,1), "</pre>";
         $info['text'] = $text;
 
 
