@@ -98,7 +98,7 @@
                         </div>
                         <div class="author">
                             <b>{$browseSeriesItem->getLocalizedSubtitle()}</b>
-                            <p>{$browseSeriesItem->getLocalizedData('description')|strip_unsafe_html}</p>
+                            <p>{$seriesInfo.text|strip_unsafe_html}</p>
                         </div>
                     </div>
                 </div>
