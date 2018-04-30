@@ -38,5 +38,5 @@
 }
 
 .cmp_series_list .row {
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5em !important;
 }
