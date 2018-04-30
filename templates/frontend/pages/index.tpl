@@ -83,25 +83,26 @@
         {iterate from=browseSeriesFactory item=browseSeriesItem}
             {assign var="seriesId" value=$browseSeriesItem->getData('id')}
             {idai_series_info series=$browseSeriesItem}
-
-            <div class="row">
-                <div class="obj_monograph_summary">
-                    <a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
-                        {if $seriesInfo.image !== null}
-                            <img src="{$seriesInfo.image}" alt="Image {$browseSeriesItem->getLocalizedTitle()|escape}" />
-                        {/if}
-                    </a>
-                    <div class="title">
-                        <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
-                            {$browseSeriesItem->getLocalizedTitle()|escape} ({$seriesInfo.count})
+            {if $seriesInfo.count > 0}
+                <div class="row">
+                    <div class="obj_monograph_summary">
+                        <a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
+                            {if $seriesInfo.image !== null}
+                                <img src="{$seriesInfo.image}" alt="Image {$browseSeriesItem->getLocalizedTitle()|escape}" />
+                            {/if}
                         </a>
-                    </div>
-                    <div class="author">
-                        <b>{$browseSeriesItem->getLocalizedSubtitle()}</b>
-                        <p>{$browseSeriesItem->getLocalizedData('description')|strip_unsafe_html}</p>
+                        <div class="title">
+                            <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
+                                {$browseSeriesItem->getLocalizedTitle()|escape} ({$seriesInfo.count})
+                            </a>
+                        </div>
+                        <div class="author">
+                            <b>{$browseSeriesItem->getLocalizedSubtitle()}</b>
+                            <p>{$browseSeriesItem->getLocalizedData('description')|strip_unsafe_html}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {/if}
         {/iterate}
     </div>
 
