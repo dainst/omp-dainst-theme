@@ -78,7 +78,7 @@
     {/if}
 
     {* display series on index page an additional time because in the sidebar is appareantly not enaough *}
-    <div class="cmp_monographs_list">
+    <div class="cmp_series_list">
         <h2 class="title">{translate key="plugins.themes.dainst.series"}</h2>
         {iterate from=browseSeriesFactory item=browseSeriesItem}
             {assign var="seriesId" value=$browseSeriesItem->getData('id')}
