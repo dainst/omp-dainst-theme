@@ -388,19 +388,6 @@
 				</div>
 			{/if}
 
-			{* License *}
-			{if $licenseUrl}
-				<div class="item license">
-					{if $ccLicenseBadge}
-						{$ccLicenseBadge}
-					{else}
-						<a href="{$licenseUrl|escape}">
-							{translate key="submission.license"}
-						</a>
-					{/if}
-				</div>
-			{/if}
-
 			{* Publication formats *}
 			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
