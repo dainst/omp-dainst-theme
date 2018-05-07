@@ -243,8 +243,8 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// construct the navbar via the settings array
 		$this->_idaic->settings['logo']['text'] 					= '/ books';
 		$this->_idaic->settings['logo']['src'] 						= $this->theUrl . '/' . $this->pluginPath . '/img/logo_publications.png';
-		$this->_idaic->settings['logo']['href'] 					= $this->theUrl;
-		$this->_idaic->settings['logo']['href2'] 					= $smarty->smartyUrl(array('page' => "index"),$smarty);
+		$this->_idaic->settings['logo']['href'] 					= "/";
+		$this->_idaic->settings['logo']['href2'] 					= $this->theUrl; //$smarty->smartyUrl(array('page' => "index"),$smarty);
 
 		if ($server != "production") {
 			$this->_idaic->settings['buttons']["aaa-warning"]		= array(
