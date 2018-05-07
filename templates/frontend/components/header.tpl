@@ -60,7 +60,13 @@
 						<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
 					</a>
 				{/if}
+
+				<div class="dai-logo">
+					<img src="{$baseUrl}/plugins/themes/omp-dainst-theme/img/dailogo232.png">
+				</div>
+
 			{if $requestedOp == 'index'}</h1>{else}</div>{/if}
+
 		</div>
 
 		{* Wrapper for page content and sidebars *}

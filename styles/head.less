@@ -117,7 +117,6 @@
 
   	.is_text {
 	  display: inline-block;
-	  margin-right: @sidebar-width;
 	  border-left: 1px solid @bg-shade;
 	  border-right: 1px solid @bg-shade;
 	  &:hover {
@@ -127,6 +126,12 @@
 	  &:focus {
 		text-decoration: underline;
 	  }
+	}
+
+	.dai-logo {
+		width: @sidebar-width - 7;
+		display: inline-block;
+		text-align: left;
 	}
 
 
