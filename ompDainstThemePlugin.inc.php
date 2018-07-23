@@ -133,7 +133,7 @@ class ompDainstThemePlugin extends ThemePlugin {
         //$seriesCount = $seriesCountDao->getSeriesCount();
         $templateMgr->assign('browseSeriesFactory', $series);
         //$templateMgr->assign('seriesCount', $seriesCount);
-        $templateMgr->register_function('idai_series_info', array($this, "getSeriesInfo"));
+		$this->registerSmartyFunction('idai_series_info', array($this, "getSeriesInfo"));
 
 
 
