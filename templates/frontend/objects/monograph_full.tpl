@@ -85,7 +85,11 @@
 					{foreach from=$authors item=author}
 						<div class="sub_item">
 							<div class="label">
-								{$author->getFullName()|escape}
+								{if $identifyAsEditors}
+									{translate key="submission.editorName" editorName=$author->getFullName()|escape}
+								{else}
+									{$author->getFullName()|escape}
+								{/if}
 							</div>
 							{if $author->getLocalizedAffiliation()}
 								<div class="value">
@@ -102,13 +106,17 @@
 						</div>
 					{/foreach}
 
-				{* Show long author lists on one line *}
+					{* Show long author lists on one line *}
 				{else}
 					{foreach name="authors" from=$authors item=author}
 						{* strip removes excess white-space which creates gaps between separators *}
 						{strip}
 							{if $author->getLocalizedAffiliation()}
-								{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{if $identifyAsEditors}
+									{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
+								{else}
+									{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{/if}
 								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
 								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
 							{else}
@@ -125,14 +133,14 @@
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
 				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{php}//continue;{/php}
+					{php}continue;{/php}
 				{/if}
 				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
 				{if $pubId}
 					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
 					<div class="item doi">
 						<span class="label">
-							{$pubIdPlugin->getDisplayName()}
+							{translate key="plugins.pubIds.doi.readerDisplayName"}
 						</span>
 						<span class="value">
 							<a href="{$doiUrl}">
@@ -178,6 +186,17 @@
 									</div>
 								{/if}
 
+								{* DOI (requires plugin) *}
+								{foreach from=$pubIdPlugins item=pubIdPlugin}
+									{if $pubIdPlugin->getPubIdType() != 'doi'}
+										{php}continue;{/php}
+									{/if}
+									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
+									{if $pubId}
+										{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+										<div class="doi">{translate key="plugins.pubIds.doi.readerDisplayName"} <a href="{$doiUrl}">{$doiUrl}</a></div>
+									{/if}
+								{/foreach}
 
 								{* Display any files that are assigned to this chapter *}
 								{pluck_files assign="chapterFiles" files=$availableFiles by="chapter" value=$chapterId}
@@ -248,13 +267,19 @@
 			{/if}
 
 			{* References *}
-			{if $monograph->getCitations()}
+			{if $parsedCitations->getCount() || $monograph->getCitations()}
 				<div class="item references">
 					<h3 class="label">
 						{translate key="submission.citations"}
 					</h3>
 					<div class="value">
-						{$monograph->getCitations()|nl2br}
+						{if $parsedCitations->getCount()}
+							{iterate from=parsedCitations item=parsedCitation}
+								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
+							{/iterate}
+						{elseif $monograph->getCitations()}
+							{$monograph->getCitations()|nl2br}
+						{/if}
 					</div>
 				</div>
 			{/if}
@@ -277,7 +302,7 @@
 
 			{* Any non-chapter files and remote resources *}
 			{pluck_files assign=nonChapterFiles files=$availableFiles by="chapter" value=0}
-			{if $nonChapterFiles|@count}
+			{if $nonChapterFiles|@count || $remotePublicationFormats|@count}
 				<div class="item files">
 					{foreach from=$publicationFormats item=format}
 						{assign var=publicationFormatId value=$format->getId()}
@@ -291,7 +316,7 @@
 								</a>
 							</div>
 
-						{* File downloads *}
+							{* File downloads *}
 						{else}
 
 							{* Only display files that haven't been displayed in a chapter *}
@@ -305,7 +330,7 @@
 									{/foreach}
 								</div>
 
-							{* Use an itemized presentation if multiple files exist *}
+								{* Use an itemized presentation if multiple files exist *}
 							{elseif $pubFormatFiles|@count > 1}
 								<div class="pub_format_{$publicationFormatId|escape}">
 									<span class="label">
@@ -329,6 +354,22 @@
 							{/if}
 						{/if}
 					{/foreach}{* Publication formats loop *}
+				</div>
+			{/if}
+
+			{* Publication Date *}
+			{if $monograph->getDatePublished()}
+				<div class="item date_published">
+					<div class="label">
+						{if $monograph->getDatePublished()|date_format:$dateFormatShort > $smarty.now|date_format:$dateFormatShort}
+							{translate key="catalog.forthcoming"}
+						{else}
+							{translate key="catalog.published"}
+						{/if}
+					</div>
+					<div class="value">
+						{$monograph->getDatePublished()|date_format:$dateFormatLong}
+					</div>
 				</div>
 			{/if}
 
