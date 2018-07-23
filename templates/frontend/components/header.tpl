@@ -40,7 +40,7 @@
 			{if $requestedOp == 'index'}<h1 class="pkp_site_name">{else}<div class="pkp_site_name">{/if}
 
 				{capture assign="homeUrl"}
-					{url "homeUrl" context="index" router=$smarty.const.ROUTE_PAGE}
+					{url context="index" router=$smarty.const.ROUTE_PAGE}
 				{/capture}
 				{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 					<a href="{$homeUrl}" class="is_img">
