@@ -313,15 +313,15 @@ class ompDainstThemePlugin extends ThemePlugin {
 		);
 
 		// context menu
-		$contextId = ($context) ? $context->getId() : CONTEXT_ID_NONE;
-		$navigationMenuDao = DAORegistry::getDAO('NavigationMenuDAO');
-		$navigationMenu = $navigationMenuDao->getByArea($contextId, 'primary');
-		if (isset($navigationMenu)) {
-			import('classes.core.ServicesContainer');
-			ServicesContainer::instance()
-				->get('navigationMenu')
-				->getMenuTree($navigationMenu);
-		}
+//		$contextId = ($context) ? $context->getId() : CONTEXT_ID_NONE;
+//		$navigationMenuDao = DAORegistry::getDAO('NavigationMenuDAO');
+//		$navigationMenu = $navigationMenuDao->getByArea($contextId, 'primary');
+//		if (isset($navigationMenu)) {
+//			import('classes.core.ServicesContainer');
+//			ServicesContainer::instance()
+//				->get('navigationMenu')
+//				->getMenuTree($navigationMenu);
+//		}
 
 		foreach ($navigationMenu->menuTree as $i => $navigationMenuItemAssignment) {
 			$navigationMenuItem = $navigationMenuItemAssignment->navigationMenuItem;
