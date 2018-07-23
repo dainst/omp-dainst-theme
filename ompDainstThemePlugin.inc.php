@@ -33,6 +33,13 @@ class ompDainstThemePlugin extends ThemePlugin {
 		}
 	}
 
+	private function registerSmartyBlock($name, $function) {
+		$templateMgr = TemplateManager::getManager();
+		if (!isset($templateMgr->registered_plugins['block'][$name])) {
+			$templateMgr->register_block($name, $function);
+		}
+	}
+
 	/**
 	 * Initialize the theme's styles, scripts and hooks. This is run on the
 	 * currently active theme and it's parent themes.
@@ -65,7 +72,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->theUrl = Request::getBaseUrl();
 
 		$this->registerSmartyFunction("idai_head", array($this, "getHead"));
-		$templateMgr->register_block("idai_navbar", array($this, "getNavbar"));
+		$this->registerSmartyBlock("idai_navbar", array($this, "getNavbar"));
 		$this->registerSmartyFunction("idai_footer", array($this, "getFooter"));
 		$this->registerSmartyFunction("idai_footer_scripts", array($this, "getFooterScripts"));
 		$this->registerSmartyFunction("idai_viewer", array($this, "getViewer"));
