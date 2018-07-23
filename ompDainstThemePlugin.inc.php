@@ -26,6 +26,13 @@ class ompDainstThemePlugin extends ThemePlugin {
 		return parent::isActive();
 	}
 
+	private function registerSmartyFunction($name, $function) {
+		$templateMgr = TemplateManager::getManager();
+		if (!isset($templateMgr->registered_plugins['function'][$name])) {
+			$templateMgr->register_function($name, $function);
+		}
+	}
+
 	/**
 	 * Initialize the theme's styles, scripts and hooks. This is run on the
 	 * currently active theme and it's parent themes.
@@ -57,14 +64,14 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// dainst functions
 		$this->theUrl = Request::getBaseUrl();
 
-		$templateMgr->register_function("idai_head", array($this, "getHead"));
+		$this->registerSmartyFunction("idai_head", array($this, "getHead"));
 		$templateMgr->register_block("idai_navbar", array($this, "getNavbar"));
-		$templateMgr->register_function("idai_footer", array($this, "getFooter"));
-		$templateMgr->register_function("idai_footer_scripts", array($this, "getFooterScripts"));
-		$templateMgr->register_function("idai_viewer", array($this, "getViewer"));
-		$templateMgr->register_function("idai_modal", array($this, "getModal"));
-		$templateMgr->register_function("idai_series", array($this, "getSeriesOfBook"));
-		$templateMgr->register_function("idai_pubid_plugins", array($this, "getPubidPlugins"));
+		$this->registerSmartyFunction("idai_footer", array($this, "getFooter"));
+		$this->registerSmartyFunction("idai_footer_scripts", array($this, "getFooterScripts"));
+		$this->registerSmartyFunction("idai_viewer", array($this, "getViewer"));
+		$this->registerSmartyFunction("idai_modal", array($this, "getModal"));
+		$this->registerSmartyFunction("idai_series", array($this, "getSeriesOfBook"));
+		$this->registerSmartyFunction("idai_pubid_plugins", array($this, "getPubidPlugins"));
 
 		require_once($this->getFilePath() . '/lib/idai-components-php/idai-components.php');
 
