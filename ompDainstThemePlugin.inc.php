@@ -494,7 +494,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 				"src"	=> $this->theUrl . '/' . $this->pluginPath . '/styles/small_footer.css'
 			);
 
-			$templateMgr->display($this->getTemplatePath() . 'display.tpl');
+			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
 			return true;
 		}
 
