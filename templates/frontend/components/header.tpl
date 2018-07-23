@@ -21,7 +21,7 @@
 {/strip}
 <!DOCTYPE html>
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
-{if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
+{if !$pageTitleTranslated}{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}{/if}
 {include file="frontend/components/headerHead.tpl"}
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
@@ -39,8 +39,9 @@
                Otherwise that should go to the page title. *}
 			{if $requestedOp == 'index'}<h1 class="pkp_site_name">{else}<div class="pkp_site_name">{/if}
 
-				{url|assign:"homeUrl" press="index" router=$smarty.const.ROUTE_PAGE}
-
+				{capture assign="homeUrl"}
+					{url "homeUrl" press="index" router=$smarty.const.ROUTE_PAGE}
+				{/capture}
 				{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 					<a href="{$homeUrl}" class="is_img">
 						<span class="overlay_text">{$displayPageHeaderTitle}</span>
@@ -74,4 +75,4 @@
 			{assign var=hasSidebar value=0}
 		{/if}
 		<div class="pkp_structure_content{if $hasSidebar} has_sidebar{/if}">
-			<div id="pkp_content_main" class="pkp_structure_main" role="main">
+<div id="pkp_content_main" class="pkp_structure_main" role="main">
