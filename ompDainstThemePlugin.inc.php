@@ -71,7 +71,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// dainst functions
 		$this->theUrl = Request::getBaseUrl();
 
-		$this->registerSmartyFunction("idai_head", array($this, "getHead"));
+		$this->registerSmartyFunction("idai_header", array($this, "getHeader"));
 		$this->registerSmartyBlock("idai_navbar", array($this, "getNavbar"));
 		$this->registerSmartyFunction("idai_footer", array($this, "getFooter"));
 		$this->registerSmartyFunction("idai_footer_scripts", array($this, "getFooterScripts"));
@@ -135,8 +135,6 @@ class ompDainstThemePlugin extends ThemePlugin {
         //$templateMgr->assign('seriesCount', $seriesCount);
 		$this->registerSmartyFunction('idai_series_info', array($this, "getSeriesInfo"));
 
-
-
 	}
 
 	/**
@@ -191,13 +189,12 @@ class ompDainstThemePlugin extends ThemePlugin {
 		return "production";
 	}
 
-	function getHead($params, &$smarty) {
-
+	function getHeader($params) {
 		return $this->_idaic->header();
 	}
 
 
-	function getModal($params, &$smarty) {
+	function getModal($params, $smarty) {
 
 		$context = $smarty->get_template_vars('currentContext');
 
@@ -245,7 +242,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * 	subtitle - string: journal name
 	 * @return string
 	 */
-	function getNavbar($params, $content, &$smarty, &$repeat) {
+	function getNavbar($params, $content, $smarty, $repeat) {
 		if ($repeat == true) {
 			return;
 		}
@@ -313,15 +310,19 @@ class ompDainstThemePlugin extends ThemePlugin {
 		);
 
 		// context menu
-//		$contextId = ($context) ? $context->getId() : CONTEXT_ID_NONE;
-//		$navigationMenuDao = DAORegistry::getDAO('NavigationMenuDAO');
-//		$navigationMenu = $navigationMenuDao->getByArea($contextId, 'primary');
-//		if (isset($navigationMenu)) {
-//			import('classes.core.ServicesContainer');
-//			ServicesContainer::instance()
-//				->get('navigationMenu')
-//				->getMenuTree($navigationMenu);
-//		}
+		$contextId = ($context) ? $context->getId() : CONTEXT_ID_NONE;
+		$navigationMenuDao = DAORegistry::getDAO('NavigationMenuDAO');
+
+
+
+		$navigationMenus = $navigationMenuDao->getByArea($contextId, 'primary')->toArray();
+		if (isset($navigationMenus[0])) {
+			$navigationMenu = $navigationMenus[0];
+			import('classes.core.ServicesContainer');
+			ServicesContainer::instance()
+				->get('navigationMenu')
+				->getMenuTree($navigationMenu);
+		}
 
 		foreach ($navigationMenu->menuTree as $i => $navigationMenuItemAssignment) {
 			$navigationMenuItem = $navigationMenuItemAssignment->navigationMenuItem;
@@ -432,7 +433,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * @param array $params
 	 * @return string
 	 */
-	function getFooter($params, &$smarty) {
+	function getFooter($params, $smarty) {
 
 		$context = $smarty->get_template_vars('currentContext');
 
@@ -461,7 +462,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		return $this->_idaic->footer();
 	}
 
-	function getFooterScripts($params, &$smarty) {
+	function getFooterScripts($params, $smarty) {
 		return $this->getPiwik() . $this->_idaic->getScripts("footer");
 	}
 
@@ -494,7 +495,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 				"src"	=> $this->theUrl . '/' . $this->pluginPath . '/styles/small_footer.css'
 			);
 
-			$templateMgr->display($this->getTemplatePath() . '/display.tpl');
+			$templateMgr->display($this->getTemplateResource('display.tpl'));
 			return true;
 		}
 
@@ -509,7 +510,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * @param $params
 	 * @param $smarty
 	 */
-	function getSeriesOfBook($params, &$smarty) {
+	function getSeriesOfBook($params, $smarty) {
 		// are we on a book page?
 		if (isset($params['monograph']) and (get_class($params['monograph']) == 'PublishedMonograph')) {
 			$publishedMonograph = $params['monograph'];
@@ -522,7 +523,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 			}
 
 			// title with author
-			$smarty->assign("currentTitle", $publishedMonograph->getFirstAuthor() . ': ' . $publishedMonograph->getLocalizedTitle());
+			$smarty->assign("currentTitle", $publishedMonograph->getShortAuthorString() . ': ' . $publishedMonograph->getLocalizedTitle());
 
 			// link in galley view
 			if ($smarty->get_template_vars('isGalleyView') == "true") {
@@ -532,7 +533,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	}
 
 
-	function getPubidPlugins($params, &$smarty) {
+	function getPubidPlugins($params, $smarty) {
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$smarty->assign('pubIdPlugins', $pubIdPlugins);
 	}
@@ -547,7 +548,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * @param red $smarty
 	 * @return string
 	 */
-	function getViewer($params, &$smarty) {
+	function getViewer($params, $smarty) {
 		$viewerSrc = Config::getVar('dainst', 'viewerUrl');
 		if ($viewerSrc) {
 			$url = "$viewerSrc?";
@@ -570,7 +571,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	}
 
 
-	function getUser(&$smarty) {
+	function getUser($smarty) {
 		if (!defined('SESSION_DISABLE_INIT')) {
 			$session =& Request::getSession();
 			$loginUrl = Request::url(null, 'login', 'signIn');
@@ -623,7 +624,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	}
 
 
-    function getSeriesInfo($params, &$smarty) {
+    function getSeriesInfo($params, $smarty) {
         $series = $params['series'];
         $info = array();
         $request = Application::getRequest();

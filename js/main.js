@@ -70,7 +70,7 @@
 
 
 
-	// (register fuck) da-clickedy-clack
+	// registration form
 	function showTermsModal(e) {
 		e.preventDefault();
 		showModal();
