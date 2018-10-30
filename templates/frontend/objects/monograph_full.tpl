@@ -429,6 +429,18 @@
 				</div>
 			{/if}
 
+      {foreach from=$pubIdPlugins item=pubIdPlugin}
+        {*assign var=pubId value=$monograph->getPubId($pubIdPlugin->getPubIdType())*}
+        {assign var=pubId value=$pubIdPlugin->getPubId($monograph)}
+        {if $pubId}
+          {assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+          <div class="item doi">
+            {$pubIdPlugin->getDisplayName()}<br>
+            <a href="{$doiUrl}">{$doiUrl}</a>
+          </div>
+        {/if}
+      {/foreach}
+
 			{* Publication formats *}
 			{if count($publicationFormats)}
 				{foreach from=$publicationFormats item="publicationFormat"}
@@ -514,6 +526,7 @@
 							{/if}
 
 							{* PubIDs *}
+              TEST
 							{foreach from=$pubIdPlugins item=pubIdPlugin}
 								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
