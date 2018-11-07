@@ -466,25 +466,6 @@
 
 						<div class="item publication_format">
 
-							{* Only add the format-specific heading if multiple publication formats exist *}
-							{if count($publicationFormats) > 1}
-								<h3 class="pkp_screen_reader">
-									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
-									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
-								</h3>
-
-								<div class="sub_item item_heading format">
-									<div class="label">
-										{$publicationFormat->getLocalizedName()|escape}
-									</div>
-								</div>
-							{else}
-								<h3 class="pkp_screen_reader">
-									{translate key="monograph.miscellaneousDetails"}
-								</h3>
-							{/if}
-
-
 							{* DOI's and other identification codes *}
 							{if $identificationCodes}
 								{foreach from=$identificationCodes item=identificationCode}
@@ -526,7 +507,6 @@
 							{/if}
 
 							{* PubIDs *}
-              TEST
 							{foreach from=$pubIdPlugins item=pubIdPlugin}
 								{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
@@ -542,19 +522,8 @@
 								{/if}
 							{/foreach}
 
-							{* Physical dimensions *}
-							{if $publicationFormat->getPhysicalFormat()}
-								<div class="sub_item dimensions">
-									<div class="label">
-										{translate key="monograph.publicationFormat.productDimensions"}
-									</div>
-									<div class="value">
-										{$publicationFormat->getDimensions()|escape}
-									</div>
-								</div>
-							{/if}
-						</div>
 					{/if}
+
 				{/foreach}
 			{/if}
 
