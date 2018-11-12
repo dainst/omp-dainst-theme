@@ -354,7 +354,7 @@
 							{/if}
 						{/if}
 					{/foreach}{* Publication formats loop *}
-				</div>
+				</div><!-- item files -->
 			{/if}
 
 			{* Publication Date *}
@@ -526,6 +526,7 @@
 
 				{/foreach}
 			{/if}
+    </div><!-- publicationFormat -->
 
 			{call_hook name="Templates::Catalog::Book::Details"}
 
