@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
 
-<!--
-  * plugins/themes/default/locale/de_DE/locale.xml
-  *
-  * Copyright (c) 2014-2017 Simon Fraser University
-  * Copyright (c) 2003-2017 John Willinsky
-  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
-  *
-  * Localization strings
-  -->
-
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.themes.omp-dainst-theme.name">Dainst-Thema</message>
 	<message key="plugins.themes.omp-dainst-theme.description">Dieses Thema stellt das Dainst-Thema bereit.</message>
@@ -23,7 +13,11 @@
 
 	<message key="plugins.themes.dainst.series">Reihen</message>
 
+	<message key="plugins.themes.dainst.etAl"> u. A.</message>
+
 	<!-- missing in main translation -->
+	<message key="about.aboutContext">Über... </message>
 	<message key="submission.authorListSeparator">; </message>
+	<message key="submission.editorName">{$editorName} (Hrsg.)</message>
 
 </locale>

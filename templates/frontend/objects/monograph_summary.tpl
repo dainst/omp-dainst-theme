@@ -23,6 +23,6 @@
 		{$monograph->getLocalizedFullTitle()|escape}
 	</a>
 	<div class="author">
-		{$monograph->getAuthorString()|escape}
+    {include file="frontend/objects/authorlist_short.tpl" authors=$monograph->getAuthors() worktype=$monograph->getWorkType()}
 	</div>
 </div><!-- .obj_monograph_summary -->

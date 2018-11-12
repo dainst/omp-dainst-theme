@@ -41,3 +41,8 @@
 #dai_navbar .navbar-right {
 	margin-right: 0;
 }
+
+
+.obj_monograph_full .main_entry .author-list:nth-of-type(2) .label {
+	font-weight: normal !important;
+}
