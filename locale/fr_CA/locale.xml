@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="fr_CA" full_name="Français (Canada)">
+  <message key="plugins.themes.omp-dainst-theme.name">Dainst Theme</message>
+	<message key="plugins.themes.omp-dainst-theme.description">This theme implements the dainst theme.</message>
+
+	<message key="plugins.themes.dainst.imprint">Imprint</message>
+
+	<message key="plugins.themes.dainst.termsOfUse">Terms of Use</message>
+
+	<message key="plugins.themes.dainst.reportBugsTo">Report bugs to</message>
+	<message key="plugins.themes.dainst.additionalInfo">Additional Information</message>
+
+	<message key="plugins.themes.dainst.series">Series</message>
+
+	<message key="plugins.themes.dainst.etAl"> et al.</message>
+
+	<!-- missing in main translation -->
+  <message key="about.aboutContext">À propos</message>
+	<message key="submission.authorListSeparator">; </message>
+	<message key="submission.editorName">{$editorName} (ed)</message>
+
+</locale>
