@@ -23,5 +23,7 @@
 
 	<message key="plugins.themes.dainst.series">Reihen</message>
 
+	<!-- missing in main translation -->
+	<message key="submission.authorListSeparator">; </message>
 
 </locale>
