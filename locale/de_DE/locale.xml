@@ -3,7 +3,7 @@
 
 <locale name="de_DE" full_name="Deutsch (Deutschland)">
 	<message key="plugins.themes.omp-dainst-theme.name">Dainst-Thema</message>
-	<message key="plugins.themes.omp-dainst-theme.description">Dieses Thema stellt das Dainst-Thema bereit.</message>
+	<message key="plugins.themes.omp-dainst-theme.description">Dieses Thema stellt das DAI-Thema bereit.</message>
 
 	<message key="plugins.themes.dainst.termsOfUse">Nutzungsbedingungen</message>
 	<message key="plugins.themes.dainst.imprint">Impressum</message>
