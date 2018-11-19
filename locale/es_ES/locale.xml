@@ -20,5 +20,7 @@
   <message key="about.aboutContext">About</message>
 	<message key="submission.authorListSeparator">; </message>
 	<message key="submission.editorName">{$editorName} (ed)</message>
+	
+	<message key="submission.catalogEntry.viewSubmission">Einreichung ansehen</message>
 
 </locale>
