@@ -481,14 +481,14 @@
 									</div>
 								{/if}
 							{/foreach}
+            </div><!-- publicationFormat -->
 
 					{/if}
 
 				{/foreach}
 			{/if}
-    </div><!-- publicationFormat -->
 
-			{call_hook name="Templates::Catalog::Book::Details"}
+		  {call_hook name="Templates::Catalog::Book::Details"}
 
 		</div><!-- .details -->
 	</div><!-- .row -->
