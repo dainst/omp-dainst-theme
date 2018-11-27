@@ -5,14 +5,14 @@
   <message key="plugins.themes.omp-dainst-theme.name">Dainst Theme</message>
 	<message key="plugins.themes.omp-dainst-theme.description">This theme implements the dainst theme.</message>
 
-	<message key="plugins.themes.dainst.imprint">Imprint</message>
+	<message key="plugins.themes.dainst.imprint">Mentions légales</message>
 
-	<message key="plugins.themes.dainst.termsOfUse">Terms of Use</message>
+	<message key="plugins.themes.dainst.termsOfUse">Conditions générales</message>
 
-	<message key="plugins.themes.dainst.reportBugsTo">Report bugs to</message>
-	<message key="plugins.themes.dainst.additionalInfo">Additional Information</message>
+	<message key="plugins.themes.dainst.reportBugsTo">Annonce les bugs à</message>
+	<message key="plugins.themes.dainst.additionalInfo">Information complémentaire</message>
 
-	<message key="plugins.themes.dainst.series">Series</message>
+	<message key="plugins.themes.dainst.series">Série</message>
 
 	<message key="plugins.themes.dainst.etAl"> et al.</message>
 
