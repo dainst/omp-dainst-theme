@@ -13,7 +13,7 @@
 
 	<message key="plugins.themes.dainst.series">Reihen</message>
 
-	<message key="plugins.themes.dainst.etAl"> u. A.</message>
+	<message key="plugins.themes.dainst.etAl"> u. a.</message>
 
 	<!-- missing in main translation -->
 	<message key="about.aboutContext">Über... </message>
