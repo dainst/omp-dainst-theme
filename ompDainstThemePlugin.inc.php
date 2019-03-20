@@ -319,8 +319,19 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$navigationMenus = $navigationMenuDao->getByArea($contextId, 'primary')->toArray();
 		if (isset($navigationMenus[0])) {
 			$navigationMenu = $navigationMenus[0];
-			import('classes.core.Services');
-			Services::get('navigationMenu')->getMenuTree($navigationMenu);
+
+			// OMP 3.2
+			if (file_exists(BASE_SYS_DIR.'/classes/core/Services.php')) {
+				require_once (BASE_SYS_DIR.'/classes/core/Services.inc.php');
+				import('classes.core.Services');
+				Services::get('navigationMenu')->getMenuTree($navigationMenu);
+
+			} else { //OMP 3.1
+				require_once (BASE_SYS_DIR.'/classes/core/ServicesContainer.inc.php');
+				ServicesContainer::instance()->get('navigationMenu')->getMenuTree($navigationMenu);
+			}
+
+
 		}
 
 		foreach ($navigationMenu->menuTree as $i => $navigationMenuItemAssignment) {
