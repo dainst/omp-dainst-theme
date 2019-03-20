@@ -36,7 +36,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	private function registerSmartyBlock($name, $function) {
 		$templateMgr = TemplateManager::getManager();
 		if (!isset($templateMgr->registered_plugins['block'][$name])) {
-			$templateMgr->register_block($name, $function);
+			$templateMgr->registerPlugin("block", $name, $function);
 		}
 	}
 
@@ -45,6 +45,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * currently active theme and it's parent themes.
 	 *
 	 * @return null
+	 * @throws Exception
 	 */
 	public function init() {
 
@@ -318,10 +319,8 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$navigationMenus = $navigationMenuDao->getByArea($contextId, 'primary')->toArray();
 		if (isset($navigationMenus[0])) {
 			$navigationMenu = $navigationMenus[0];
-			import('classes.core.ServicesContainer');
-			ServicesContainer::instance()
-				->get('navigationMenu')
-				->getMenuTree($navigationMenu);
+			import('classes.core.Services');
+			Services::get('navigationMenu')->getMenuTree($navigationMenu);
 		}
 
 		foreach ($navigationMenu->menuTree as $i => $navigationMenuItemAssignment) {
