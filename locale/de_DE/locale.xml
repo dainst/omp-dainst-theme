@@ -13,11 +13,12 @@
 
 	<message key="plugins.themes.dainst.series">Reihen</message>
 
-	<message key="plugins.themes.dainst.etAl"> u. A.</message>
+	<message key="plugins.themes.dainst.etAl"> u. a.</message>
 
 	<!-- missing in main translation -->
 	<message key="about.aboutContext">Über... </message>
 	<message key="submission.authorListSeparator">; </message>
 	<message key="submission.editorName">{$editorName} (Hrsg.)</message>
+	<message key="plugins.pubIds.urn.displayName">URN </message>
 
 </locale>
