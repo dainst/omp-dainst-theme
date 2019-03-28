@@ -129,13 +129,14 @@ class ompDainstThemePlugin extends ThemePlugin {
 		// show series on main page
         //$seriesCountDao = new SeriesCountDAO();
         $press = $request->getPress();
-        $seriesDao = DAORegistry::getDAO('SeriesDAO');
-        $series = $seriesDao->getByPressId($press->getId());
-        //$seriesCount = $seriesCountDao->getSeriesCount();
-        $templateMgr->assign('browseSeriesFactory', $series);
-        //$templateMgr->assign('seriesCount', $seriesCount);
-		$this->registerSmartyFunction('idai_series_info', array($this, "getSeriesInfo"));
-
+        if ($press) {
+			$seriesDao = DAORegistry::getDAO('SeriesDAO');
+			$series = $seriesDao->getByPressId($press->getId());
+			//$seriesCount = $seriesCountDao->getSeriesCount();
+			$templateMgr->assign('browseSeriesFactory', $series);
+			//$templateMgr->assign('seriesCount', $seriesCount);
+			$this->registerSmartyFunction('idai_series_info', array($this, "getSeriesInfo"));
+		}
 	}
 
 	/**
