@@ -46,3 +46,12 @@
 .obj_monograph_full .main_entry .author-list:nth-of-type(2) .label {
 	font-weight: normal !important;
 }
+
+
+
+.obj_monograph_full .title, .obj_monograph_full .main_entry, 
+.obj_monograph_full .details {
+    margin-bottom: 20px;
+    width: 540px;
+    line-height: normal;
+}
