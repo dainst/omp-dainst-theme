@@ -20,5 +20,7 @@
 	<message key="submission.authorListSeparator">; </message>
 	<message key="submission.editorName">{$editorName} (Hrsg.)</message>
 	<message key="plugins.pubIds.urn.displayName">URN </message>
+	<message key="user.givenName">Vorname</message>
+	<message key="user.familyName">Name</message>
 
 </locale>

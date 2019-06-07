@@ -17,8 +17,10 @@
 	<message key="plugins.themes.dainst.etAl"> et al.</message>
 
 	<!-- missing in main translation -->
-  <message key="about.aboutContext">À propos</message>
+    <message key="about.aboutContext">À propos</message>
 	<message key="submission.authorListSeparator">; </message>
 	<message key="submission.editorName">{$editorName} (ed)</message>
+	<message key="user.givenName">Prénom</message>
+	<message key="user.familyName">Nom</message>
 
 </locale>
