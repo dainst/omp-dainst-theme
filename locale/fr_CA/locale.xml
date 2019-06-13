@@ -22,5 +22,10 @@
 	<message key="submission.editorName">{$editorName} (ed)</message>
 	<message key="user.givenName">Prénom</message>
 	<message key="user.familyName">Nom</message>
+    <message key="catalog.newReleases">Nouveautés</message>
+
+    <!-- english placeholders for missing checkbox translations -->
+    <message key="user.register.form.privacyConsent">Yes, I agree to have my data collected and stored according to the <a href="https://publications.dainst.org/books/index.php/dai/about/privacy" target="blank">privacy statement</a>.</message>
+    <message key="user.register.form.emailConsent">Yes, I would like to be notified of new publications and announcements.</message>
 
 </locale>
