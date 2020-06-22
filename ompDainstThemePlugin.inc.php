@@ -59,8 +59,7 @@ class ompDainstThemePlugin extends ThemePlugin {
 		if ($this->getServerType() != "production") {
 			$templateMgr->caching = 0;
 			$templateMgr->cache_lifetime = 0;
-			$templateMgr->clear_all_cache();
-			$templateMgr->clear_compiled_tpl();
+			$templateMgr->clearTemplateCache();
 		}
 
 		// Load primary stylesheet
@@ -175,20 +174,13 @@ class ompDainstThemePlugin extends ThemePlugin {
 
 
 	function getServerType() {
-
-		$testservers = array(
-			'test.publications.dainst.org'
-		);
-		$devservers = array(
-			'195.37.232.186'
-		);
-		if (in_array($_SERVER['SERVER_NAME'], $testservers)) {
+		if (strpos($_SERVER['SERVER_NAME'], 'publications.dainst.org') !== false) {
+			return "production";
+		} else if(strpos($_SERVER['SERVER_NAME'], 'test.publications.dainst.org') !== false) {
 			return "test";
-		}
-		if (in_array($_SERVER['SERVER_NAME'], $devservers)) {
+		} else {
 			return "dev";
 		}
-		return "production";
 	}
 
 	function getHeader($params) {
