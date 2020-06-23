@@ -93,7 +93,7 @@
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
 				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{php}continue;{/php}
+					{continue}
 				{/if}
 				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
 				{if $pubId}
@@ -149,7 +149,7 @@
 								{* DOI (requires plugin) *}
 								{foreach from=$pubIdPlugins item=pubIdPlugin}
 									{if $pubIdPlugin->getPubIdType() != 'doi'}
-										{php}continue;{/php}
+										{continue}
 									{/if}
 									{assign var=pubId value=$chapter->getStoredPubId($pubIdPlugin->getPubIdType())}
 									{if $pubId}
@@ -415,13 +415,13 @@
 							{assign var=pubIdType value=$pubIdPlugin->getPubIdType()}
 							{if $publicationFormat->getStoredPubId($pubIdType)}
 								{assign var=hasPubId value=true}
-								{php}break;{/php}
+								{break}
 							{/if}
 						{/foreach}
 
 						{* Skip if we don't have any information to print about this pub format *}
 						{if !$identificationCodes && !$publicationDates && !$hasPubId && !$publicationFormat->getPhysicalFormat()}
-							{php}continue;{/php}
+							{continue}
 						{/if}
 
 						<div class="item publication_format">
