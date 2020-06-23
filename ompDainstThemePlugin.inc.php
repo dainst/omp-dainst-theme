@@ -174,10 +174,10 @@ class ompDainstThemePlugin extends ThemePlugin {
 
 
 	function getServerType() {
-		if (strpos($_SERVER['SERVER_NAME'], 'publications.dainst.org') !== false) {
-			return "production";
-		} else if(strpos($_SERVER['SERVER_NAME'], 'test.publications.dainst.org') !== false) {
+		if(strpos($_SERVER['SERVER_NAME'], 'test.publications.dainst.org') !== false) {
 			return "test";
+		} if (strpos($_SERVER['SERVER_NAME'], 'publications.dainst.org') !== false) {
+			return "production";
 		} else {
 			return "dev";
 		}
