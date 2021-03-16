@@ -40,10 +40,6 @@
 					</div>
 				</div>
 			</div>
-
-		</div>
-		<div id="main">
-			{idai_viewer file=$downloadUrl}
 		</div>
 		{idai_footer}
 		{load_script context="frontend"}

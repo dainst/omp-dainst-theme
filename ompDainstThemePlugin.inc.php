@@ -48,12 +48,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 	 * @throws Exception
 	 */
 	public function init() {
-
-		if ($this->getEnabled()) {
-			HookRegistry::register('CatalogBookHandler::view', array($this, 'viewerCallback'), HOOK_SEQUENCE_LATE);
-		}
-
-
 		// cache cleansing
 		$templateMgr = TemplateManager::getManager();
 		if ($this->getServerType() != "production") {
@@ -75,7 +69,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$this->registerSmartyBlock("idai_navbar", array($this, "getNavbar"));
 		$this->registerSmartyFunction("idai_footer", array($this, "getFooter"));
 		$this->registerSmartyFunction("idai_footer_scripts", array($this, "getFooterScripts"));
-		$this->registerSmartyFunction("idai_viewer", array($this, "getViewer"));
 		$this->registerSmartyFunction("idai_modal", array($this, "getModal"));
 		$this->registerSmartyFunction("idai_series", array($this, "getSeriesOfBook"));
 		$this->registerSmartyFunction("idai_pubid_plugins", array($this, "getPubidPlugins"));
@@ -540,33 +533,6 @@ class ompDainstThemePlugin extends ThemePlugin {
 		$pubIdPlugins = PluginRegistry::loadCategory('pubIds', true);
 		$smarty->assign('pubIdPlugins', $pubIdPlugins);
 	}
-
-	/**
-	 * show the pdf reader
-	 *
-	 * registered as smarty function idai_viewer
-	 *
-	 * @param array $params
-	 * 	file - full url to pdf file
-	 * @param red $smarty
-	 * @return string
-	 */
-	function getViewer($params, $smarty) {
-		$viewerSrc = Config::getVar('dainst', 'viewerUrl');
-		if ($viewerSrc) {
-			$url = "$viewerSrc?";
-			$url .= Config::getVar('dainst', 'restrictAnnotationTypes') ? 'annotation_types=' . Config::getVar('dainst', 'restrictAnnotationTypes') . '&' : '';
-			$url .= "file={$params['file']}";
-			$url .= (Config::getVar('dainst', 'viewerAppendId') or isset($_GET['ann'])) ? "&pubid={$params['article']}" : '';
-		} else {
-			$url = $params['file'];
-		}
-
-		return "<iframe id='dainstPdfViewer' src='$url'></iframe>";
-
-		//$viewerSrc = $this->theUrl . '/plugins/themes/dainst/inc/dbv/viewer.html';
-	}
-
 
 
 	function getFilePath() {
