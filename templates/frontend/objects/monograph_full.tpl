@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/monograph_full.tpl
  *
- * Copyright (c) 2014-2017 Simon Fraser University
- * Copyright (c) 2003-2017 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display a full view of a monograph. Expected to be primary object on
@@ -51,10 +51,15 @@
  *
  * @uses $currentPress Press The press currently being viewed
  * @uses $monograph Monograph The monograph to be displayed
+ * @uses $authors Array List of authors associated with this monograph
+ * @uses $editors Array List of editors for this monograph if this is an edited
+ *       volume. Otherwise empty.
  * @uses $dateFormatShort string String defining date format that is passed to
  *       smarty template function
  * @uses $series Series The series this monograph is assigned to, if any.
  * @uses $publicationFormats array List of PublicationFormat objects to display
+ * @uses $remotePublicationFormats array List of PublicationFormat objects which
+ *       have remote URLs associated
  * @uses $availableFiles array List of available MonographFiles
  * @uses $chapters array List of chapters in monograph. Associative array
  * @uses $sharingCode string Code snippet for a social sharing widget
@@ -80,15 +85,61 @@
 
 				{assign var="authors" value=$monograph->getAuthors()}
 
-        {* editors for edited volumes *}
+				{* Only show editors for edited volumes *}
 				{if $monograph->getWorkType() == $smarty.const.WORK_TYPE_EDITED_VOLUME && $editors|@count}
-          {include file="frontend/objects/authorlist.tpl" authors=$editors editors=true}
-        {/if}
+					{assign var="authors" value=$editors}
+					{assign var="identifyAsEditors" value=true}
+				{/if}
 
-        {* authors *}
-        {include file="frontend/objects/authorlist.tpl" authors=$authors editors=false}
+				{* Show short author lists on multiple lines *}
+				{if $authors|@count < 5}
+					{foreach from=$authors item=author}
+						<div class="sub_item">
+							<div class="label">
+								{if $identifyAsEditors}
+									{translate key="submission.editorName" editorName=$author->getFullName()|escape}
+								{else}
+									{$author->getFullName()|escape}
+								{/if}
+							</div>
+							{if $author->getLocalizedAffiliation()}
+								<div class="value">
+									{$author->getLocalizedAffiliation()|escape}
+								</div>
+							{/if}
+							{if $author->getOrcid()}
+								<span class="orcid">
+									<a href="{$author->getOrcid()|escape}" target="_blank">
+										{$author->getOrcid()|escape}
+									</a>
+								</span>
+							{/if}
+						</div>
+					{/foreach}
 
-      </div>
+				{* Show long author lists on one line *}
+				{else}
+					{foreach name="authors" from=$authors item=author}
+						{* strip removes excess white-space which creates gaps between separators *}
+						{strip}
+							{if $author->getLocalizedAffiliation()}
+								{if $identifyAsEditors}
+									{capture assign="authorName"}<span class="label">{translate key="submission.editorName" editorName=$author->getFullName()|escape}</span>{/capture}
+								{else}
+									{capture assign="authorName"}<span class="label">{$author->getFullName()|escape}</span>{/capture}
+								{/if}
+								{capture assign="authorAffiliation"}<span class="value">{$author->getLocalizedAffiliation()|escape}</span>{/capture}
+								{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+							{else}
+								<span class="label">{$author->getFullName()|escape}</span>
+							{/if}
+							{if !$smarty.foreach.authors.last}
+								{translate key="submission.authorListSeparator"}
+							{/if}
+						{/strip}
+					{/foreach}
+				{/if}
+			</div>
 
 			{* DOI (requires plugin) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
@@ -111,6 +162,23 @@
 				{/if}
 			{/foreach}
 
+			{* Keywords *}
+			{if !empty($keywords[$currentLocale])}
+			<div class="item keywords">
+				<span class="label">
+					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
+					{translate key="semicolon" label=$translatedKeywords}
+				</span>
+				<span class="value">
+				{foreach from=$keywords item=keyword}
+					{foreach name=keywords from=$keyword item=keywordItem}
+						{$keywordItem|escape}{if !$smarty.foreach.keywords.last}, {/if}
+					{/foreach}
+				{/foreach}
+				</span>
+			</div>
+			{/if}
+
 			{* Abstract *}
 			<div class="item abstract">
 				<h3 class="label">
@@ -124,7 +192,7 @@
 			{* Chapters *}
 			{if $chapters|@count}
 				<div class="item chapters">
-					<h3 class="pkp_screen_reader">
+					<h3 class="label">
 						{translate key="submission.chapters"}
 					</h3>
 					<ul>
@@ -132,7 +200,7 @@
 							{assign var=chapterId value=$chapter->getId()}
 							<li>
 								<div class="title">
-									{$chapter->getLocalizedTitle()}
+									{$chapter->getLocalizedTitle()|escape}
 									{if $chapter->getLocalizedSubtitle() != ''}
 										<div class="subtitle">
 											{$chapter->getLocalizedSubtitle()|escape}
@@ -276,7 +344,7 @@
 								</a>
 							</div>
 
-							{* File downloads *}
+						{* File downloads *}
 						{else}
 
 							{* Only display files that haven't been displayed in a chapter *}
@@ -290,7 +358,7 @@
 									{/foreach}
 								</div>
 
-								{* Use an itemized presentation if multiple files exist *}
+							{* Use an itemized presentation if multiple files exist *}
 							{elseif $pubFormatFiles|@count > 1}
 								<div class="pub_format_{$publicationFormatId|escape}">
 									<span class="label">
@@ -314,7 +382,7 @@
 							{/if}
 						{/if}
 					{/foreach}{* Publication formats loop *}
-				</div><!-- item files -->
+				</div>
 			{/if}
 
 			{* Publication Date *}
@@ -389,17 +457,18 @@
 				</div>
 			{/if}
 
-      {foreach from=$pubIdPlugins item=pubIdPlugin}
-        {*assign var=pubId value=$monograph->getPubId($pubIdPlugin->getPubIdType())*}
-        {assign var=pubId value=$pubIdPlugin->getPubId($monograph)}
-        {if $pubId}
-          {assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-          <div class="item doi">
-            {$pubIdPlugin->getDisplayName()}<br>
-            <a href="{$doiUrl}">{$doiUrl}</a>
-          </div>
-        {/if}
-      {/foreach}
+			{* License *}
+			{if $licenseUrl}
+				<div class="item license">
+					{if $ccLicenseBadge}
+						{$ccLicenseBadge}
+					{else}
+						<a href="{$licenseUrl|escape}">
+							{translate key="submission.license"}
+						</a>
+					{/if}
+				</div>
+			{/if}
 
 			{* Publication formats *}
 			{if count($publicationFormats)}
@@ -425,6 +494,25 @@
 						{/if}
 
 						<div class="item publication_format">
+
+							{* Only add the format-specific heading if multiple publication formats exist *}
+							{if count($publicationFormats) > 1}
+								<h3 class="pkp_screen_reader">
+									{assign var=publicationFormatName value=$publicationFormat->getLocalizedName()}
+									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
+								</h3>
+
+								<div class="sub_item item_heading format">
+									<div class="label">
+										{$publicationFormat->getLocalizedName()|escape}
+									</div>
+								</div>
+							{else}
+								<h3 class="pkp_screen_reader">
+									{translate key="monograph.miscellaneousDetails"}
+								</h3>
+							{/if}
+
 
 							{* DOI's and other identification codes *}
 							{if $identificationCodes}
@@ -481,14 +569,24 @@
 									</div>
 								{/if}
 							{/foreach}
-            </div><!-- publicationFormat -->
 
+							{* Physical dimensions *}
+							{if $publicationFormat->getPhysicalFormat()}
+								<div class="sub_item dimensions">
+									<div class="label">
+										{translate key="monograph.publicationFormat.productDimensions"}
+									</div>
+									<div class="value">
+										{$publicationFormat->getDimensions()|escape}
+									</div>
+								</div>
+							{/if}
+						</div>
 					{/if}
-
 				{/foreach}
 			{/if}
 
-		  {call_hook name="Templates::Catalog::Book::Details"}
+			{call_hook name="Templates::Catalog::Book::Details"}
 
 		</div><!-- .details -->
 	</div><!-- .row -->
