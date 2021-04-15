@@ -83,17 +83,18 @@
         {iterate from=browseSeriesFactory item=browseSeriesItem}
             {assign var="seriesId" value=$browseSeriesItem->getData('id')}
             {idai_series_info series=$browseSeriesItem}
+
             {if $seriesInfo.count > 0}
                 <div class="row">
                     <div class="obj_monograph_summary">
-                        <a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
+						<a class="cover" href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
                             {if $seriesInfo.image !== null}
                                 <img src="{$seriesInfo.image}" alt="Image {$browseSeriesItem->getLocalizedTitle()|escape}" />
                             {/if}
                         </a>
                         <div class="title">
                             <a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="series" path=$browseSeriesItem->getPath()|escape}">
-                                {$browseSeriesItem->getLocalizedTitle()|escape} ({$seriesInfo.count})
+                                {$browseSeriesItem->getLocalizedTitle()|escape} {* ({$seriesInfo.count}) *}
                             </a>
                         </div>
                         <div class="author">
