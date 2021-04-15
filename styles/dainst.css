@@ -35,7 +35,11 @@
 }
 
 .cmp_series_list .obj_monograph_summary {
-    margin-bottom: 0.5em !important;
+	margin-bottom: 1vh !important;
+	padding: 1vh 0;
+	padding-right: 2vh;
+	border-bottom: 0.1vw solid #f1f1f1;
+	text-align: justify;
 }
 
 #dai_navbar .navbar-right {
@@ -47,11 +51,17 @@
 	font-weight: normal !important;
 }
 
+.obj_monograph_full .main_entry div.item.abstract {
+	text-align: justify;
+}
 
-
-.obj_monograph_full .title, .obj_monograph_full .main_entry, 
+.obj_monograph_full .title, .obj_monograph_full .main_entry,
 .obj_monograph_full .details {
     margin-bottom: 20px;
     width: 540px;
     line-height: normal;
+}
+
+.pkp_structure_main .page .about_section .description {
+	text-align:justify;
 }
