@@ -77,6 +77,27 @@
 	<div class="row">
 		<div class="main_entry">
 
+			{* DOI (requires plugin) *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'doi'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<span class="label">
+							{translate key="plugins.pubIds.doi.readerDisplayName"}
+						</span>
+						<span class="value">
+							<a href="{$doiUrl}">
+								{$doiUrl}
+							</a>
+						</span>
+					</div>
+				{/if}
+			{/foreach}
+
 			{* Author list *}
 			<div class="item authors">
 				<h2 class="pkp_screen_reader">
@@ -92,7 +113,7 @@
 				{/if}
 
 				{* Show short author lists on multiple lines *}
-				{if $authors|@count < 5}
+				{if $authors|@count < 10}
 					{foreach from=$authors item=author}
 						<div class="sub_item">
 							<div class="label">
@@ -140,27 +161,6 @@
 					{/foreach}
 				{/if}
 			</div>
-
-			{* DOI (requires plugin) *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{if $pubIdPlugin->getPubIdType() != 'doi'}
-					{continue}
-				{/if}
-				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
-					<div class="item doi">
-						<span class="label">
-							{translate key="plugins.pubIds.doi.readerDisplayName"}
-						</span>
-						<span class="value">
-							<a href="{$doiUrl}">
-								{$doiUrl}
-							</a>
-						</span>
-					</div>
-				{/if}
-			{/foreach}
 
 			{* Keywords *}
 			{if !empty($keywords[$currentLocale])}
@@ -296,14 +296,14 @@
 
 			{* References *}
 			{if $parsedCitations->getCount() || $monograph->getCitations()}
-				<div class="item references">
+				<div class="item references" style = "font-size:0.9em;">
 					<h3 class="label">
 						{translate key="submission.citations"}
 					</h3>
 					<div class="value">
 						{if $parsedCitations->getCount()}
 							{iterate from=parsedCitations item=parsedCitation}
-								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
+								<p style = "padding: 0.5vh; text-align: justify;">{$parsedCitation->getCitationWithLinks()|strip_unsafe_html}</p>
 							{/iterate}
 						{elseif $monograph->getCitations()}
 							{$monograph->getCitations()|nl2br}
@@ -450,6 +450,25 @@
 				</div>
 			{/if}
 
+			{* ZenonId *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() != 'other::zenon'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$monograph->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="zenonUrl" value=$pubIdPlugin->getResolvingURL($currentPress->getId(), $pubId)|escape}
+					<div class="item doi">
+						<span class="label">iDAI.bibliography</span>
+						<span class="value">
+							<a href="{$zenonUrl}">
+								{$zenonUrl}
+							</a>
+						</span>
+					</div>
+				{/if}
+			{/foreach}
+
 			{* Copyright statement *}
 			{if $monograph->getCopyrightYear() && $monograph->getLocalizedCopyrightHolder()}
 				<div class="item copyright">
@@ -502,7 +521,7 @@
 									{translate key="monograph.publicationFormatDetails" format=$publicationFormatName|escape}
 								</h3>
 
-								<div class="sub_item item_heading format">
+								<div class="sub_item format">
 									<div class="label">
 										{$publicationFormat->getLocalizedName()|escape}
 									</div>
@@ -560,9 +579,7 @@
 								{assign var=storedPubId value=$publicationFormat->getStoredPubId($pubIdType)}
 								{if $storedPubId != ''}
 									<div class="sub_item pubid {$publicationFormat->getId()|escape}">
-										<div class="label">
-											{$pubIdType}
-										</div>
+										<!--- <div class="label">{* {$pubIdType} *} </div> --->
 										<div class="value">
 											{$storedPubId|escape}
 										</div>
