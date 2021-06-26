@@ -169,13 +169,13 @@
 					{capture assign=translatedKeywords}{translate key="common.keywords"}{/capture}
 					{translate key="semicolon" label=$translatedKeywords}
 				</span>
-				<span class="value">
+				<div class="value">
 				{foreach from=$keywords item=keyword}
 					{foreach name=keywords from=$keyword item=keywordItem}
 						{$keywordItem|escape}{if !$smarty.foreach.keywords.last}, {/if}
 					{/foreach}
 				{/foreach}
-				</span>
+				</div>
 			</div>
 			{/if}
 
@@ -587,7 +587,7 @@
 								{/if}
 							{/foreach}
 
-							{* Physical dimensions *}
+							{* Physical dimensions
 							{if $publicationFormat->getPhysicalFormat()}
 								<div class="sub_item dimensions">
 									<div class="label">
@@ -598,6 +598,7 @@
 									</div>
 								</div>
 							{/if}
+							*}
 						</div>
 					{/if}
 				{/foreach}
