@@ -65,3 +65,7 @@
 .pkp_structure_main .page .about_section .description {
 	text-align:justify;
 }
+
+.page_catalog_series .about_section .description p {
+	padding: 1vh 0;
+}
